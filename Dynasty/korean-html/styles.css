@@ -53,7 +53,9 @@ body {
   z-index: 1;
   display: block;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
   text-rendering: geometricPrecision;
   font-family: "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", Arial, sans-serif;
   letter-spacing: 0;

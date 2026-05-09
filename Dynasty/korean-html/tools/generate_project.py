@@ -13,13 +13,21 @@ import fitz
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT.parent
 WORKSPACE = ROOT.parents[1]
+
 PDF_PATH = SOURCE_DIR / "CM Strength Dynasty.pdf"
 DOCX_PATH = SOURCE_DIR / "CM Strength Dynasty conv.docx"
 KOREAN_DOCX_PATH = WORKSPACE / "korean_exports" / "final" / "CM Strength Dynasty conv Korean.docx"
 ASSETS = ROOT / "assets" / "pages"
 
-PT_TO_IN = 1 / 72
 RENDER_ZOOM = 2
+
+
+def validate_sources() -> None:
+    required = [PDF_PATH, DOCX_PATH]
+    missing = [path for path in required if not path.exists()]
+    if missing:
+        formatted = "\n".join(f"- {path}" for path in missing)
+        raise FileNotFoundError(f"Required source file(s) missing:\n{formatted}")
 
 
 def read_docx_paragraphs(path: Path) -> list[str]:
@@ -41,24 +49,54 @@ def color_to_hex(value: int | None) -> str:
     return f"#{(value >> 16) & 255:02x}{(value >> 8) & 255:02x}{value & 255:02x}"
 
 
-def classify_placeholder(text: str, size: float, source: str) -> str:
+def clean_visible_text(text: str) -> str:
+    return re.sub(r"\s+", " ", text.replace("•", "")).strip()
+
+
+def fitted_korean_source(source: str, original_text: str, size: float) -> str:
+    source = clean_visible_text(source)
+    if not source:
+        return ""
+
+    original = original_text.strip()
+    if len(original) <= 3:
+        return original
+
+    # Keep text inside the original fixed PDF line boxes. Final translations can
+    # be expanded by editing the visible span text while retaining coordinates.
+    factor = 0.72 if size < 12 else 0.62
+    target = max(3, min(80, int(len(original) * factor)))
+    if len(source) <= target:
+        return source
+
+    cut = source[:target].rstrip()
+    last_space = cut.rfind(" ")
+    if last_space > target * 0.55:
+        cut = cut[:last_space]
+    return cut.rstrip(" ,.;:")
+
+
+def classify_text(text: str, size: float, source: str) -> str:
     clean = re.sub(r"\s+", " ", text).strip()
     if not clean:
         return ""
+
     upper = clean.upper()
     if "CM STRENGTH DYNASTY" in upper:
         return "CM STRENGTH DYNASTY"
     if size >= 34:
         return "CM 스트렝스 다이너스티"
-    if size >= 18 or (upper == clean and len(clean) > 3):
-        return "한국어 섹션 제목"
-    if re.fullmatch(r"[\d\s./:%+-]+", clean):
+    if re.fullmatch(r"[\d\s./:%+–—-]+", clean):
         return clean
     if re.search(r"[가-힣]", source):
-        target = max(4, min(70, int(len(clean) * 0.62)))
-        return source[:target].rstrip()
+        fitted = fitted_korean_source(source, clean, size)
+        if fitted:
+            return fitted
+    if size >= 18 or (upper == clean and len(clean) > 3):
+        return "한국어 섹션 제목"
     if len(clean) <= 3:
         return clean
+
     base = "한국어 번역문"
     target = max(4, min(42, int(len(clean) * 0.45)))
     repeated = (base + " ") * ((target // len(base)) + 3)
@@ -74,16 +112,18 @@ def span_style(span: dict, bbox: tuple[float, float, float, float]) -> str:
     italic = "italic" if "Italic" in font or flags & 2 else "normal"
     color = color_to_hex(span.get("color"))
     width = max(1, x1 - x0)
-    height = max(size * 1.1, y1 - y0)
+    height = max(size * 1.12, y1 - y0)
+    ko_size = size * (0.92 if size < 13 else 0.96)
+    line_height = max(ko_size * 1.13, height)
     return (
         f"left:{x0:.3f}pt;top:{y0:.3f}pt;width:{width:.3f}pt;"
-        f"height:{height:.3f}pt;font-size:{size:.3f}pt;"
-        f"line-height:{height:.3f}pt;font-weight:{weight};font-style:{italic};"
+        f"height:{height:.3f}pt;font-size:{ko_size:.3f}pt;"
+        f"line-height:{line_height:.3f}pt;font-weight:{weight};font-style:{italic};"
         f"color:{color};"
     )
 
 
-def extract_spans(page: fitz.Page, docx_paras: list[str], para_index: int) -> tuple[list[dict], int]:
+def extract_spans(page: fitz.Page, visible_paragraphs: list[str], para_index: int) -> tuple[list[dict], int]:
     raw = page.get_text("rawdict")
     spans: list[dict] = []
     for block in raw.get("blocks", []):
@@ -95,16 +135,16 @@ def extract_spans(page: fitz.Page, docx_paras: list[str], para_index: int) -> tu
                 text = "".join(ch.get("c", "") for ch in chars)
                 if not text.strip():
                     continue
+
                 bbox = tuple(float(v) for v in span["bbox"])
-                source = docx_paras[para_index] if para_index < len(docx_paras) else ""
-                if len(text.strip()) > 8 and para_index < len(docx_paras):
+                source = visible_paragraphs[para_index] if para_index < len(visible_paragraphs) else ""
+                if len(text.strip()) > 8 and para_index < len(visible_paragraphs):
                     para_index += 1
                 spans.append(
                     {
-                        "text": classify_placeholder(text, float(span.get("size", 10)), source),
+                        "text": classify_text(text, float(span.get("size", 10)), source),
                         "source": source,
                         "style": span_style(span, bbox),
-                        "bbox": bbox,
                     }
                 )
     return spans, para_index
@@ -128,13 +168,17 @@ def render_textless_page(src: fitz.Document, page_number: int, out_path: Path) -
                 rect.x1 += 0.35
                 rect.y1 += 0.25
                 page.add_redact_annot(rect, fill=None, cross_out=False)
-    page.apply_redactions(images=fitz.PDF_REDACT_IMAGE_NONE, graphics=fitz.PDF_REDACT_LINE_ART_NONE, text=fitz.PDF_REDACT_TEXT_REMOVE)
+    page.apply_redactions(
+        images=fitz.PDF_REDACT_IMAGE_NONE,
+        graphics=fitz.PDF_REDACT_LINE_ART_NONE,
+        text=fitz.PDF_REDACT_TEXT_REMOVE,
+    )
     pix = page.get_pixmap(matrix=fitz.Matrix(RENDER_ZOOM, RENDER_ZOOM), alpha=False)
     pix.save(out_path)
     single.close()
 
 
-def build_html(pages: list[dict], metadata: dict) -> str:
+def build_html(pages: list[dict], visible_docx_path: Path) -> str:
     parts = [
         "<!doctype html>",
         '<html lang="ko">',
@@ -145,14 +189,15 @@ def build_html(pages: list[dict], metadata: dict) -> str:
         '<link rel="stylesheet" href="styles.css">',
         "</head>",
         "<body>",
-        f"<!-- Generated from {html.escape(str(PDF_PATH.name))} and {html.escape(str(DOCX_PATH.name))}. -->",
+        (
+            f"<!-- Generated from {html.escape(PDF_PATH.name)} with visible text from "
+            f"{html.escape(visible_docx_path.name)}. -->"
+        ),
     ]
     for page in pages:
-        w = page["width"]
-        h = page["height"]
         parts.append(
             f'<section class="pdf-page" data-page="{page["number"]}" '
-            f'style="width:{w:.3f}pt;height:{h:.3f}pt">'
+            f'style="width:{page["width"]:.3f}pt;height:{page["height"]:.3f}pt">'
         )
         parts.append(
             f'<img class="page-art" src="assets/pages/page-{page["number"]:03d}-background.png" alt="">'
@@ -167,25 +212,25 @@ def build_html(pages: list[dict], metadata: dict) -> str:
 
 
 def main() -> None:
+    validate_sources()
     ASSETS.mkdir(parents=True, exist_ok=True)
-    raw_docx_paras = read_docx_paragraphs(DOCX_PATH)
+
+    english_paragraphs = read_docx_paragraphs(DOCX_PATH)
     visible_docx_path = KOREAN_DOCX_PATH if KOREAN_DOCX_PATH.exists() else DOCX_PATH
-    visible_docx_paras = read_docx_paragraphs(visible_docx_path)
+    visible_paragraphs = read_docx_paragraphs(visible_docx_path)
+
     pdf = fitz.open(PDF_PATH)
     pages: list[dict] = []
     para_index = 0
-
     for i, page in enumerate(pdf):
         number = i + 1
-        bg = ASSETS / f"page-{number:03d}-background.png"
-        render_textless_page(pdf, i, bg)
-        spans, para_index = extract_spans(page, visible_docx_paras, para_index)
+        render_textless_page(pdf, i, ASSETS / f"page-{number:03d}-background.png")
+        spans, para_index = extract_spans(page, visible_paragraphs, para_index)
         pages.append(
             {
                 "number": number,
                 "width": page.rect.width,
                 "height": page.rect.height,
-                "background": bg.name,
                 "spans": spans,
             }
         )
@@ -194,16 +239,17 @@ def main() -> None:
         "source_pdf": str(PDF_PATH),
         "source_docx": str(DOCX_PATH),
         "visible_text_docx": str(visible_docx_path),
+        "korean_docx_found": KOREAN_DOCX_PATH.exists(),
         "page_count": pdf.page_count,
-        "docx_paragraph_count": len(raw_docx_paras),
-        "visible_docx_paragraph_count": len(visible_docx_paras),
+        "docx_paragraph_count": len(english_paragraphs),
+        "visible_docx_paragraph_count": len(visible_paragraphs),
         "mapped_docx_paragraphs": para_index,
         "render_zoom": RENDER_ZOOM,
     }
-    (ROOT / "index.html").write_text(build_html(pages, metadata), encoding="utf-8")
-    (ROOT / "assets" / "manifest.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")
+    (ROOT / "index.html").write_text(build_html(pages, visible_docx_path), encoding="utf-8")
+    (ROOT / "assets" / "manifest.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8")
     pdf.close()
-    print(json.dumps(metadata, indent=2))
+    print(json.dumps(metadata, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
