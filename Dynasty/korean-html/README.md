@@ -46,6 +46,17 @@ The PDF is written to:
 output.pdf
 ```
 
+## Verification Checklist
+
+After regenerating or editing the overlay, verify:
+
+- `npm run generate` completes without errors.
+- `index.html` contains 93 `.pdf-page` sections.
+- `assets/pages/` contains 93 `page-*-background.png` files.
+- `assets/manifest.json` reports `page_count: 93` and `korean_docx_found: true`.
+- `npm run export` writes `output.pdf`.
+- `output.pdf` opens, has 93 letter-sized pages, and visually preserves the original backgrounds, branding, headers, footers, tables, and page scale.
+
 ## Translation Replacement Notes
 
 The visible placeholder spans use the required Korean font stack:

@@ -82,8 +82,8 @@ def classify_text(text: str, size: float, source: str) -> str:
         return ""
 
     upper = clean.upper()
-    if "CM STRENGTH DYNASTY" in upper:
-        return "CM STRENGTH DYNASTY"
+    if re.fullmatch(r"CM\s+STRENGTH(?:\s+DYNASTY)?", upper):
+        return clean
     if size >= 34:
         return "CM 스트렝스 다이너스티"
     if re.fullmatch(r"[\d\s./:%+–—-]+", clean):

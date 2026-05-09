@@ -5,6 +5,7 @@
 # Repo-specific generated or separate-project artifacts
 node_modules/
 **/node_modules/
+Dynasty/korean-html/qa/
 EBook/
 generated-doc-assets/
 korean_exports/layout_pass/
