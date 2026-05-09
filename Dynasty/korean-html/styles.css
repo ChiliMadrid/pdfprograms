@@ -1,0 +1,73 @@
+:root {
+  --page-width: 8.5in;
+  --page-height: 11in;
+}
+
+@page {
+  size: letter;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #e6e6e6;
+}
+
+body {
+  font-family: "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", Arial, sans-serif;
+  color: #111;
+}
+
+.pdf-page {
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto 24px;
+  background: #fff;
+  break-after: page;
+  page-break-after: always;
+}
+
+.pdf-page:last-child {
+  break-after: auto;
+  page-break-after: auto;
+}
+
+.page-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  z-index: 0;
+}
+
+.ko-text {
+  position: absolute;
+  z-index: 1;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-rendering: geometricPrecision;
+  font-family: "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+@media print {
+  html,
+  body {
+    width: var(--page-width);
+    background: #fff;
+  }
+
+  .pdf-page {
+    margin: 0;
+    box-shadow: none;
+  }
+}

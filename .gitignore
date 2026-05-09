@@ -1,0 +1,11 @@
+.codex_local_py/
+**/__pycache__/
+*.pyc
+
+# Repo-specific generated or separate-project artifacts
+EBook/
+generated-doc-assets/
+korean_exports/layout_pass/
+korean_exports/layout_reference_pass/
+korean_exports/dynasty_pub_pass/
+korean_exports/translation_cache.json

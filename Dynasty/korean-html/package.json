@@ -1,0 +1,14 @@
+{
+  "name": "cm-strength-dynasty-korean-html",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "generate": "python tools/generate_project.py",
+    "preview": "npx http-server . -p 4173",
+    "export": "node export-pdf.js"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "playwright": "^1.53.0"
+  }
+}
