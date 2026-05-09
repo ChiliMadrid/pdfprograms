@@ -140,6 +140,25 @@ def translate_label(text: str) -> str:
     return translated
 
 
+def localize_mixed_text(text: str) -> str:
+    replacements = {
+        "SUPERSET WITH": "슈퍼세트",
+        "TOTAL WORK SETS": "총 작업 세트",
+        "MACHINE PRESS": "기계 프레스",
+        "SLIGHT DECLINE DUMBELL": "약간의 디클라인 덤벨",
+        "DUMBELL DECLINE": "덤벨 디클라인",
+        "DUMBELL BENT OVER SIDE LATERALS": "벤트오버 덤벨 사이드 레터럴",
+        "SPIDERCRAWLS": "스파이더 크롤",
+        "ROPE PUSHDOWNS": "로프 푸시다운",
+        "PRONATED": "회내",
+        "TRAIN EXPLOSIVELY": "폭발적으로 훈련",
+        "ACTIVATION AND START": "활성화 및 시작",
+    }
+    for english, korean in replacements.items():
+        text = re.sub(re.escape(english), korean, text, flags=re.IGNORECASE)
+    return text
+
+
 def fitted_korean_source(source: str, original_text: str, size: float) -> str:
     source = clean_visible_text(source)
     if not source:
@@ -245,6 +264,53 @@ def extract_spans(page: fitz.Page, visible_paragraphs: list[str], para_index: in
     return spans, para_index
 
 
+def extract_existing_text_spans(page: fitz.Page) -> list[dict]:
+    raw = page.get_text("rawdict")
+    spans: list[dict] = []
+    for block in raw.get("blocks", []):
+        if block.get("type") != 0:
+            continue
+        for line in block.get("lines", []):
+            for span in line.get("spans", []):
+                text = "".join(ch.get("c", "") for ch in span.get("chars", []))
+                if not text.strip():
+                    continue
+                visible_text = localize_mixed_text(clean_visible_text(text))
+                if re.search(r"[A-Za-z]", visible_text) and not has_korean(visible_text):
+                    translated = translate_label(visible_text)
+                    visible_text = "" if translated == visible_text.upper() else translated
+                if not visible_text:
+                    continue
+                spans.append(
+                    {
+                        "text": visible_text,
+                        "source": clean_visible_text(text),
+                        "style": span_style(span, tuple(float(v) for v in span["bbox"])),
+                    }
+                )
+    return spans
+
+
+def closing_page_spans(page: fitz.Page) -> list[dict]:
+    text = (
+        "CM Strength를 선택해 주셔서 감사합니다. 이 프로그램은 체육관에 들어설 때마다 구조, 목적, "
+        "강도를 제공하도록 만들어졌습니다. 계획을 따르고, 진행 상황을 기록하고, 의도적으로 훈련하며, "
+        "훈련 밖의 회복도 존중하세요. 목표는 단순히 프로그램을 끝내는 것이 아니라 더 강하고, 더 절제되고, "
+        "체육관 안팎에서 더 자신감 있는 사람이 되는 것입니다. — 칠리 코치"
+    )
+    return [
+        {
+            "text": text,
+            "source": text,
+            "style": (
+                "left:46.800pt;top:548.000pt;width:518.400pt;height:92.000pt;"
+                "font-size:13.000pt;line-height:16.000pt;font-weight:400;"
+                "font-style:normal;color:#111111;text-align:center;"
+            ),
+        }
+    ]
+
+
 def render_textless_page(src: fitz.Document, page_number: int, out_path: Path) -> None:
     single = fitz.open()
     single.insert_pdf(src, from_page=page_number, to_page=page_number)
@@ -314,6 +380,7 @@ def main() -> None:
     visible_docx_path = KOREAN_DOCX_PATH if KOREAN_DOCX_PATH.exists() else DOCX_PATH
     visible_paragraphs = read_docx_paragraphs(visible_docx_path)
     page_aligned_text = read_pdf_page_lines(KOREAN_PDF_PATH) if KOREAN_PDF_PATH.exists() else []
+    korean_pdf = fitz.open(KOREAN_PDF_PATH) if KOREAN_PDF_PATH.exists() else None
 
     pdf = fitz.open(PDF_PATH)
     pages: list[dict] = []
@@ -321,8 +388,18 @@ def main() -> None:
     for i, page in enumerate(pdf):
         number = i + 1
         render_textless_page(pdf, i, ASSETS / f"page-{number:03d}-background.png")
-        page_sources = page_aligned_text[i] if i < len(page_aligned_text) and page_aligned_text[i] else visible_paragraphs
-        spans, used_paragraphs = extract_spans(page, page_sources)
+        if korean_pdf is not None and i == pdf.page_count - 1:
+            spans = closing_page_spans(korean_pdf[i])
+            used_paragraphs = len(spans)
+        elif korean_pdf is not None:
+            spans = extract_existing_text_spans(korean_pdf[i])
+            used_paragraphs = len(spans)
+            if not spans:
+                page_sources = page_aligned_text[i] if i < len(page_aligned_text) and page_aligned_text[i] else visible_paragraphs
+                spans, used_paragraphs = extract_spans(page, page_sources)
+        else:
+            page_sources = page_aligned_text[i] if i < len(page_aligned_text) and page_aligned_text[i] else visible_paragraphs
+            spans, used_paragraphs = extract_spans(page, page_sources)
         mapped_paragraphs += used_paragraphs
         pages.append(
             {
@@ -349,6 +426,8 @@ def main() -> None:
     (ROOT / "index.html").write_text(build_html(pages, visible_docx_path), encoding="utf-8")
     (ROOT / "assets" / "manifest.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8")
     pdf.close()
+    if korean_pdf is not None:
+        korean_pdf.close()
     print(json.dumps(metadata, ensure_ascii=True, indent=2))
 
 
