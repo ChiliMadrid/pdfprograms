@@ -5,7 +5,8 @@
   "scripts": {
     "generate": "python tools/generate_project.py",
     "preview": "npx http-server . -p 4173",
-    "export": "node export-pdf.js"
+    "export": "node export-pdf.js",
+    "verify": "python tools/verify_project.py"
   },
   "devDependencies": {
     "http-server": "^14.1.1",

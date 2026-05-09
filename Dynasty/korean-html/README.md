@@ -46,7 +46,11 @@ The PDF is written to:
 output.pdf
 ```
 
-## Verification Checklist
+## Verify
+
+```powershell
+npm run verify
+```
 
 After regenerating or editing the overlay, verify:
 
@@ -55,6 +59,7 @@ After regenerating or editing the overlay, verify:
 - `assets/pages/` contains 93 `page-*-background.png` files.
 - `assets/manifest.json` reports `page_count: 93` and `korean_docx_found: true`.
 - `npm run export` writes `output.pdf`.
+- `npm run verify` passes.
 - `output.pdf` opens, has 93 letter-sized pages, and visually preserves the original backgrounds, branding, headers, footers, tables, and page scale.
 
 ## Translation Replacement Notes
