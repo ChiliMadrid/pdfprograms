@@ -6,7 +6,9 @@
     "generate": "python tools/generate_project.py",
     "preview": "npx http-server . -p 4173",
     "export": "node export-pdf.js",
-    "verify": "python tools/verify_project.py"
+    "verify": "python tools/verify_project.py",
+    "qa": "python tools/qa_production.py",
+    "final-check": "npm run generate && npm run export && npm run verify && npm run qa"
   },
   "devDependencies": {
     "http-server": "^14.1.1",

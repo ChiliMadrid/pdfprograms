@@ -52,6 +52,35 @@ output.pdf
 npm run verify
 ```
 
+## Final Production Check
+
+```powershell
+npm run final-check
+```
+
+This regenerates the HTML/page assets, exports `output.pdf`, runs the structural verifier, and then runs production QA with:
+
+- page/background/patch coverage checks
+- accidental English phrase detection
+- suspicious mixed Korean/English term detection
+- tiny font and overflow-risk checks
+- duplicate near-overlap checks
+- preview PNG generation
+
+The production QA JSON report is written to:
+
+```text
+qa-production-report.json
+```
+
+Preview PNGs are written to `qa-previews/` for pages:
+
+```text
+1, 2, 3, 4, 5, 8, 14, 61, 85, 86, 91, 93
+```
+
+`qa-previews/` is ignored because the images are generated review artifacts.
+
 After regenerating or editing the overlay, verify:
 
 - `npm run generate` completes without errors.
@@ -60,9 +89,25 @@ After regenerating or editing the overlay, verify:
 - `assets/manifest.json` reports `page_count: 93` and `korean_docx_found: true`.
 - `npm run export` writes `output.pdf`.
 - `npm run verify` passes.
+- `npm run qa` reports zero errors.
 - `output.pdf` opens, has 93 letter-sized pages, and visually preserves the original backgrounds, branding, headers, footers, tables, and page scale.
 - Spot-check pages 2-5 and workout pages such as 8, 61, 86, and 91 for localized black header bars, readable weekly tables, and no obvious English program text.
 - A text extraction scan should leave only intentional brand/acronym text such as CM Strength, Dynasty, RPE, and units.
+
+## English Allowlist
+
+The QA script allows these intentional English terms when scanning the exported PDF text layer:
+
+- CM Strength
+- Dynasty
+- RPE
+- PPL
+- URL
+- reps
+- sets
+- kg
+- lb / lbs
+- percentages and URL/domain text
 
 ## Translation Replacement Notes
 
@@ -78,4 +123,4 @@ Each text span includes a `data-source` attribute containing the corresponding D
 
 Exact original fonts were not embedded as editable web fonts. The HTML uses the required Korean-compatible font stack for all overlay text. The original non-text artwork, borders, tables, image placement, colors, headers, footers, and branding art are preserved as extracted page backgrounds.
 
-Some tables, section bars, and workout headers are flattened artwork in the original PDF rather than extractable live text. The generator adds fixed-position Korean art patches for those areas while preserving the original page background architecture.
+Some tables, section bars, and workout headers are flattened artwork in the original PDF rather than extractable live text. The generator adds fixed-position Korean art patches for those areas while preserving the original page background architecture. These patches are intentionally page-specific and should be adjusted in `tools/generate_project.py` rather than by editing generated `index.html` directly.

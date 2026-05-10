@@ -6,6 +6,7 @@
 node_modules/
 **/node_modules/
 Dynasty/korean-html/qa/
+Dynasty/korean-html/qa-previews/
 EBook/
 generated-doc-assets/
 korean_exports/layout_pass/

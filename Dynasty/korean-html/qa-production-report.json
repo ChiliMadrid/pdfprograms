@@ -1,0 +1,54 @@
+{
+  "summary": {
+    "expected_pages": 93,
+    "html_pages": 93,
+    "output_pages": 93,
+    "background_files": 93,
+    "manifest_page_count": 93,
+    "overlay_count": 18374,
+    "patched_pages_expected": 91,
+    "qa_preview_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      8,
+      14,
+      61,
+      85,
+      86,
+      91,
+      93
+    ],
+    "qa_preview_files": [
+      "qa-previews\\page-001.png",
+      "qa-previews\\page-002.png",
+      "qa-previews\\page-003.png",
+      "qa-previews\\page-004.png",
+      "qa-previews\\page-005.png",
+      "qa-previews\\page-008.png",
+      "qa-previews\\page-014.png",
+      "qa-previews\\page-061.png",
+      "qa-previews\\page-085.png",
+      "qa-previews\\page-086.png",
+      "qa-previews\\page-091.png",
+      "qa-previews\\page-093.png"
+    ],
+    "allowlisted_english": [
+      "CM Strength",
+      "Dynasty",
+      "RPE",
+      "reps",
+      "sets",
+      "kg",
+      "lb",
+      "lbs",
+      "PPL",
+      "RPE",
+      "URL"
+    ],
+    "issue_counts": {}
+  },
+  "issues": []
+}
