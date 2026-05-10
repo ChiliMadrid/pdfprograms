@@ -153,9 +153,45 @@ def localize_mixed_text(text: str) -> str:
         "PRONATED": "회내",
         "TRAIN EXPLOSIVELY": "폭발적으로 훈련",
         "ACTIVATION AND START": "활성화 및 시작",
+        "SAFETY SQUAT": "세이프티 스쿼트",
+        "MEADOWS ROW": "메도우즈 로우",
+        "REST/PAUSE": "휴식-정지",
+        "ROM": "가동범위",
+        "LIGHT": "가볍게",
+        "HEAVY": "무겁게",
+        "WITH": "슈퍼세트",
+        "EZBAR": "이지바",
+        "SMITH": "스미스",
+        "JM PRESS": "제이엠 프레스",
+        "FATGRIPZ": "팻그립즈",
+        "GRIP4ORCE": "그립포스",
+        "GRIPZ": "그립즈",
+        "ELITEFTS.NET": "엘리트에프티에스 사이트",
+        "ELITEFTS": "엘리트에프티에스",
+        "EAAS": "필수 아미노산",
+        "EAA": "필수 아미노산",
+        "T-BAR": "티바",
+        "T BAR": "티바",
+        "PULLUP": "풀업",
+        "PULLUPS": "풀업",
+        "BACK": "등",
+        "SAFETY": "세이프티",
+        "SQUAT": "스쿼트",
+        "MEADOWS": "메도우즈",
+        "ROW": "로우",
+        "PAUSE": "정지",
+        "KELSO": "켈소",
     }
     for english, korean in replacements.items():
-        text = re.sub(re.escape(english), korean, text, flags=re.IGNORECASE)
+        text = re.sub(rf"(?<![A-Za-z]){re.escape(english)}(?![A-Za-z])", korean, text, flags=re.IGNORECASE)
+    text = re.sub(r"(?<![A-Za-z])T[- ]?바", "티바", text, flags=re.IGNORECASE)
+    text = re.sub(r"(?<![A-Za-z])EZ바", "이지바", text, flags=re.IGNORECASE)
+    text = re.sub(r"(?<![A-Za-z])JM프레스", "제이엠 프레스", text, flags=re.IGNORECASE)
+    text = re.sub(r"10ish", "약 10회", text, flags=re.IGNORECASE)
+    text = re.sub(r"25's", "25파운드 원판", text, flags=re.IGNORECASE)
+    text = re.sub(r"bis", "이두근", text, flags=re.IGNORECASE)
+    text = re.sub(r"(\d+)m\b", r"\1미터", text, flags=re.IGNORECASE)
+    text = re.sub(r"(?<![A-Za-z])m(?=[가-힣\s.,;:!?)]|$)", "미터", text, flags=re.IGNORECASE)
     return text
 
 
@@ -311,6 +347,140 @@ def closing_page_spans(page: fitz.Page) -> list[dict]:
     ]
 
 
+def art_header(title: str, subtitle: str = "", top: float = 43.5) -> str:
+    subtitle_html = f'<div class="art-subtitle">{html.escape(subtitle)}</div>' if subtitle else ""
+    return (
+        f'<div class="art-patch art-header" style="left:43.400pt;top:{top:.3f}pt;'
+        'width:525.200pt;height:38.500pt">'
+        f'<div class="art-title">{html.escape(title)}</div>{subtitle_html}</div>'
+    )
+
+
+def art_cover(left: float, top: float, width: float, height: float) -> str:
+    return (
+        f'<div class="art-patch art-whiteout" style="left:{left:.3f}pt;top:{top:.3f}pt;'
+        f'width:{width:.3f}pt;height:{height:.3f}pt"></div>'
+    )
+
+
+def art_table(rows: list[list[str]], left: float, top: float, width: float, row_height: float, class_name: str) -> str:
+    rendered_rows = []
+    for index, row in enumerate(rows):
+        cells = "".join(f"<td>{html.escape(cell)}</td>" for cell in row)
+        rendered_rows.append(f'<tr class="{"head" if index == 0 else "body"}">{cells}</tr>')
+    height = row_height * len(rows)
+    return (
+        f'<div class="art-patch art-table-patch {class_name}" style="left:{left:.3f}pt;top:{top:.3f}pt;'
+        f'width:{width:.3f}pt;height:{height:.3f}pt">'
+        '<table>'
+        + "".join(rendered_rows)
+        + "</table></div>"
+    )
+
+
+def toc_table_patch() -> str:
+    rows = [
+        ["섹션", "페이지"],
+        ["프로그램 기간 및 분할", "-"],
+        ["1주차", "-"],
+        ["2주차", "-"],
+        ["3주차", "-"],
+        ["4주차", "-"],
+        ["5주차", "-"],
+        ["6주차", "-"],
+        ["7주차", "-"],
+        ["8주차", "-"],
+        ["9주차", "-"],
+        ["10주차", "-"],
+        ["11주차", "-"],
+        ["12주차", "-"],
+    ]
+    return art_cover(43.5, 126.6, 525.1, 276.0) + art_table(rows, 43.5, 126.6, 525.1, 19.1, "toc-table")
+
+
+def split_method_table_patch() -> str:
+    rows = [
+        ["버전", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"],
+        ["엘리트 회복형", "당기기", "밀기", "하체", "당기기(펌프)", "밀기(펌프)", "하체(펌프)", "휴식"],
+        ["밀기 집중형", "당기기", "밀기", "하체", "휴식", "밀기(펌프)", "하체(펌프)", "휴식"],
+        ["당기기 집중형", "당기기", "밀기", "하체", "휴식", "당기기(펌프)", "하체(펌프)", "휴식"],
+        ["하체 집중형", "당기기", "밀기", "하체", "휴식", "밀기(펌프)", "하체(펌프)", "휴식"],
+    ]
+    return art_cover(43.7, 304.2, 525.0, 70.0) + art_table(rows, 43.7, 304.2, 525.0, 10.45, "split-method-table")
+
+
+def weekly_split_table_patch() -> str:
+    rows = [
+        ["요일", "초점", "운동", "세트"],
+        ["월요일", "당기기", "8", "28"],
+        ["화요일", "밀기", "8", "27"],
+        ["수요일", "하체", "5", "21"],
+        ["목요일", "당기기(펌프)", "7", "27"],
+        ["금요일", "밀기(펌프)", "7", "28"],
+        ["토요일", "하체(펌프)", "5", "18"],
+        ["일요일", "휴식", "0", "0"],
+    ]
+    return art_cover(43.7, 173.1, 525.0, 170.0) + art_table(rows, 43.7, 173.1, 525.0, 20.4, "weekly-split-table")
+
+
+WEEK_SPLIT_PAGES = {5, 14, 21, 28, 36, 43, 50, 57, 64, 71, 78, 85}
+DAY_TITLES = {
+    "monday": ("월요일 - 당기기 운동", "기본 당기기 운동일"),
+    "tuesday": ("화요일 - 밀기 운동", "기본 밀기 운동일"),
+    "wednesday": ("수요일 - 하체 운동", "기본 하체 운동일"),
+    "thursday": ("목요일 - 당기기 운동", "펌프 전용"),
+    "friday": ("금요일 - 밀기 운동", "펌프 전용"),
+    "saturday": ("토요일 - 하체 운동", "펌프 전용"),
+}
+WEEK_PAGE_RANGES = [
+    (1, {6: "monday", 7: "monday", 8: "tuesday", 9: "tuesday", 10: "wednesday", 11: "thursday", 12: "friday", 13: "saturday"}),
+    (2, {15: "monday", 16: "tuesday", 17: "wednesday", 18: "thursday", 19: "friday", 20: "saturday"}),
+    (3, {22: "monday", 23: "tuesday", 24: "wednesday", 25: "thursday", 26: "friday", 27: "saturday"}),
+    (4, {29: "monday", 30: "tuesday", 31: "tuesday", 32: "wednesday", 33: "thursday", 34: "friday", 35: "saturday"}),
+    (5, {37: "monday", 38: "tuesday", 39: "wednesday", 40: "thursday", 41: "friday", 42: "saturday"}),
+    (6, {44: "monday", 45: "tuesday", 46: "wednesday", 47: "thursday", 48: "friday", 49: "saturday"}),
+    (7, {51: "monday", 52: "tuesday", 53: "wednesday", 54: "thursday", 55: "friday", 56: "saturday"}),
+    (8, {58: "monday", 59: "tuesday", 60: "wednesday", 61: "thursday", 62: "friday", 63: "saturday"}),
+    (9, {65: "monday", 66: "tuesday", 67: "wednesday", 68: "thursday", 69: "friday", 70: "saturday"}),
+    (10, {72: "monday", 73: "tuesday", 74: "wednesday", 75: "thursday", 76: "friday", 77: "saturday"}),
+    (11, {79: "monday", 80: "tuesday", 81: "wednesday", 82: "thursday", 83: "friday", 84: "saturday"}),
+    (12, {86: "monday", 87: "monday", 88: "tuesday", 89: "wednesday", 90: "thursday", 91: "friday", 92: "saturday"}),
+]
+
+
+def workout_header_for_page(page_number: int) -> tuple[int, str] | None:
+    for week, mapping in WEEK_PAGE_RANGES:
+        if page_number in mapping:
+            return week, mapping[page_number]
+    return None
+
+
+def page_art_patches(page_number: int) -> list[str]:
+    patches: list[str] = []
+    if page_number == 2:
+        patches.append(art_header("목차", "프로그램 로드맵"))
+        patches.append(toc_table_patch())
+    elif page_number == 3:
+        patches.append(art_header("프로그램 기간 및 분할", "당기기 / 밀기 / 하체 구조"))
+        patches.append(split_method_table_patch())
+        patches.append(art_header("디로드와 과부하 방법", "회복 관리와 진행", top=416.5))
+    elif page_number == 4:
+        patches.append(art_header("회복 영양, 밴드 워크 및 휴식 시간", "훈련 스트레스 관리"))
+        patches.append(art_header("적절한 강도", "RPE 기준표 사용", top=468.6))
+    elif page_number in WEEK_SPLIT_PAGES:
+        week = sorted(WEEK_SPLIT_PAGES).index(page_number) + 1
+        patches.append(art_header(f"{week}주차", "주간 트레이닝 개요"))
+        patches.append(weekly_split_table_patch())
+    else:
+        header = workout_header_for_page(page_number)
+        if header:
+            week, day_key = header
+            title, subtitle = DAY_TITLES[day_key]
+            pump_suffix = " - 펌프 전용" if day_key in {"thursday", "friday", "saturday"} else ""
+            patches.append(art_header(f"{week}주차 - {title}{pump_suffix}", subtitle))
+    return patches
+
+
 def render_textless_page(src: fitz.Document, page_number: int, out_path: Path) -> None:
     single = fitz.open()
     single.insert_pdf(src, from_page=page_number, to_page=page_number)
@@ -363,6 +533,7 @@ def build_html(pages: list[dict], visible_docx_path: Path) -> str:
         parts.append(
             f'<img class="page-art" src="assets/pages/page-{page["number"]:03d}-background.png" alt="">'
         )
+        parts.extend(page_art_patches(page["number"]))
         for span in page["spans"]:
             text = html.escape(span["text"])
             source = html.escape(span["source"])

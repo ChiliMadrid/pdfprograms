@@ -61,6 +61,8 @@ After regenerating or editing the overlay, verify:
 - `npm run export` writes `output.pdf`.
 - `npm run verify` passes.
 - `output.pdf` opens, has 93 letter-sized pages, and visually preserves the original backgrounds, branding, headers, footers, tables, and page scale.
+- Spot-check pages 2-5 and workout pages such as 8, 61, 86, and 91 for localized black header bars, readable weekly tables, and no obvious English program text.
+- A text extraction scan should leave only intentional brand/acronym text such as CM Strength, Dynasty, RPE, and units.
 
 ## Translation Replacement Notes
 
@@ -76,4 +78,4 @@ Each text span includes a `data-source` attribute containing the corresponding D
 
 Exact original fonts were not embedded as editable web fonts. The HTML uses the required Korean-compatible font stack for all overlay text. The original non-text artwork, borders, tables, image placement, colors, headers, footers, and branding art are preserved as extracted page backgrounds.
 
-Some tables and cover typography are flattened artwork in the original PDF rather than extractable live text. Those remain preserved visually in the page backgrounds and should be replaced with localized table artwork if fully editable Korean table text is required.
+Some tables, section bars, and workout headers are flattened artwork in the original PDF rather than extractable live text. The generator adds fixed-position Korean art patches for those areas while preserving the original page background architecture.

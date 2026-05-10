@@ -48,9 +48,99 @@ body {
   z-index: 0;
 }
 
+.art-patch {
+  position: absolute;
+  z-index: 3;
+  font-family: "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo", Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+.art-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4.6pt 7.3pt;
+  background: #0d0d0d;
+  overflow: hidden;
+}
+
+.art-title {
+  color: #b6a259;
+  font-size: 12.1pt;
+  line-height: 13.2pt;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.art-subtitle {
+  margin-top: 1.4pt;
+  color: #ffffff;
+  font-size: 5.7pt;
+  line-height: 6.6pt;
+  font-weight: 600;
+}
+
+.art-table-patch {
+  z-index: 4;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.art-whiteout {
+  background: #ffffff;
+}
+
+.art-table-patch table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 6.3pt;
+  line-height: 1.1;
+  color: #111111;
+}
+
+.art-table-patch td {
+  border: 0.65pt solid #111111;
+  padding: 1.8pt 5pt;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: 500;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.art-table-patch .head td {
+  background: #050505;
+  color: #b6a259;
+  font-size: 5.35pt;
+  font-weight: 800;
+}
+
+.toc-table td:first-child {
+  text-align: left;
+}
+
+.split-method-table table {
+  font-size: 4.85pt;
+}
+
+.split-method-table td {
+  padding: 0.9pt 1.3pt;
+}
+
+.split-method-table .head td {
+  font-size: 4.25pt;
+}
+
+.weekly-split-table table {
+  font-size: 5.8pt;
+}
+
 .ko-text {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   display: block;
   overflow: hidden;
   white-space: normal;
