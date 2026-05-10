@@ -7,8 +7,9 @@
     "preview": "npx http-server . -p 4173",
     "export": "node export-pdf.js",
     "verify": "python tools/verify_project.py",
+    "audit": "python tools/audit_missing_content.py",
     "qa": "python tools/qa_production.py",
-    "final-check": "npm run generate && npm run export && npm run verify && npm run qa"
+    "final-check": "npm run generate && npm run export && npm run verify && npm run audit && npm run qa"
   },
   "devDependencies": {
     "http-server": "^14.1.1",

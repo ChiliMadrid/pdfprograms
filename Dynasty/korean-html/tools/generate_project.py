@@ -278,6 +278,10 @@ def style_number(style: str, key: str, default: float = 0.0) -> float:
     return float(match.group(1)) if match else default
 
 
+def style_replace_number(style: str, key: str, value: float) -> str:
+    return re.sub(rf"{re.escape(key)}\s*:\s*[0-9.]+pt", f"{key}:{value:.3f}pt", style)
+
+
 def extract_spans(page: fitz.Page, visible_paragraphs: list[str], para_index: int = 0) -> tuple[list[dict], int]:
     raw = page.get_text("rawdict")
     spans: list[dict] = []
@@ -318,15 +322,24 @@ def extract_existing_text_spans(page: fitz.Page) -> list[dict]:
                     continue
                 visible_text = localize_mixed_text(clean_visible_text(text))
                 if re.search(r"[A-Za-z]", visible_text) and not has_korean(visible_text):
-                    translated = translate_label(visible_text)
-                    visible_text = "" if translated == visible_text.upper() else translated
+                    if visible_text.upper().rstrip(":") == "RPE":
+                        visible_text = "RPE" + (":" if visible_text.endswith(":") else "")
+                    else:
+                        translated = translate_label(visible_text)
+                        visible_text = "" if translated == visible_text.upper() else translated
                 if not visible_text:
                     continue
+                style = span_style(span, tuple(float(v) for v in span["bbox"]))
+                x0 = float(span["bbox"][0])
+                if visible_text == ":" and 68 <= x0 <= 78:
+                    visible_text = "RPE:"
+                    style = style_replace_number(style, "left", 55.900)
+                    style = style_replace_number(style, "width", 24.000)
                 spans.append(
                     {
                         "text": visible_text,
                         "source": clean_visible_text(text),
-                        "style": span_style(span, tuple(float(v) for v in span["bbox"])),
+                        "style": style,
                     }
                 )
     return spans
@@ -352,11 +365,11 @@ def closing_page_spans(page: fitz.Page) -> list[dict]:
     ]
 
 
-def art_header(title: str, subtitle: str = "", top: float = 43.5) -> str:
+def art_header(title: str, subtitle: str = "", top: float = 43.5, height: float = 38.5) -> str:
     subtitle_html = f'<div class="art-subtitle">{html.escape(subtitle)}</div>' if subtitle else ""
     return (
         f'<div class="art-patch art-header" style="left:43.400pt;top:{top:.3f}pt;'
-        'width:525.200pt;height:38.500pt">'
+        f'width:525.200pt;height:{height:.3f}pt">'
         f'<div class="art-title">{html.escape(title)}</div>{subtitle_html}</div>'
     )
 
@@ -482,7 +495,7 @@ def page_art_patches(page_number: int) -> list[str]:
             week, day_key = header
             title, subtitle = DAY_TITLES[day_key]
             pump_suffix = " - 펌프 전용" if day_key in {"thursday", "friday", "saturday"} else ""
-            patches.append(art_header(f"{week}주차 - {title}{pump_suffix}", subtitle))
+            patches.append(art_header(f"{week}주차 - {title}{pump_suffix}", subtitle, height=58.0))
     return patches
 
 
