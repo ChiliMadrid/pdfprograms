@@ -48,6 +48,21 @@ body {
   z-index: 0;
 }
 
+.exercise-rule-cover,
+.exercise-rule {
+  position: absolute;
+  display: block;
+  z-index: 1;
+}
+
+.exercise-rule-cover {
+  background: #ffffff;
+}
+
+.exercise-rule {
+  background: #b6a259;
+}
+
 .art-patch {
   position: absolute;
   z-index: 3;

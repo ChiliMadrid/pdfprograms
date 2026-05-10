@@ -14,7 +14,7 @@ import fitz
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_PAGES = 93
-PREVIEW_PAGES = [1, 2, 3, 4, 5, 8, 14, 61, 85, 86, 91, 93]
+PREVIEW_PAGES = [6, 8, 14, 15, 22, 29, 37, 44, 58, 61, 72, 86, 91]
 WEEKLY_SPLIT_PAGES = {5, 14, 21, 28, 36, 43, 50, 57, 64, 71, 78, 85}
 WORKOUT_PAGES = (
     set(range(6, 14))
@@ -69,6 +69,13 @@ class Overlay:
     height: float
     font_size: float
     line_height: float
+
+
+@dataclass
+class GoldLine:
+    y: float
+    x0: float
+    x1: float
 
 
 def add_issue(issues: list[dict], severity: str, code: str, message: str, page: int | None = None, sample: str | None = None) -> None:
@@ -186,6 +193,101 @@ def render_previews(output_path: Path) -> list[str]:
     return written
 
 
+def detect_gold_lines(page: fitz.Page, zoom: float = 2.0) -> list[GoldLine]:
+    pix = page.get_pixmap(matrix=fitz.Matrix(zoom, zoom), alpha=False)
+    width, height, channels = pix.width, pix.height, pix.n
+    samples = pix.samples
+    rows: list[tuple[int, int, int]] = []
+    threshold = max(90, int(width * 0.32))
+    for y in range(height):
+        xs: list[int] = []
+        row_start = y * width * channels
+        for x in range(width):
+            i = row_start + x * channels
+            r, g, b = samples[i], samples[i + 1], samples[i + 2]
+            if 120 <= r <= 210 and 95 <= g <= 180 and b < 125 and r >= g >= b:
+                xs.append(x)
+        if len(xs) >= threshold:
+            rows.append((y, min(xs), max(xs)))
+
+    grouped: list[list[int]] = []
+    for y, x0, x1 in rows:
+        if not grouped or y > grouped[-1][1] + 1:
+            grouped.append([y, y, x0, x1])
+        else:
+            grouped[-1][1] = y
+            grouped[-1][2] = min(grouped[-1][2], x0)
+            grouped[-1][3] = max(grouped[-1][3], x1)
+    return [
+        GoldLine(y=((start + end) / 2) / zoom, x0=x0 / zoom, x1=x1 / zoom)
+        for start, end, x0, x1 in grouped
+    ]
+
+
+def exercise_title_overlays(overlays: list[Overlay]) -> dict[int, list[Overlay]]:
+    titles: dict[int, list[Overlay]] = {}
+    for overlay in overlays:
+        if re.fullmatch(r"\d+/", overlay.text.strip()) and overlay.top >= 88 and overlay.left < 60 and overlay.font_size >= 7:
+            titles.setdefault(overlay.page, []).append(overlay)
+    for page in titles:
+        titles[page].sort(key=lambda item: item.top)
+    return titles
+
+
+def check_exercise_underlines(output_path: Path, overlays: list[Overlay], issues: list[dict]) -> None:
+    titles_by_page = exercise_title_overlays(overlays)
+    doc = fitz.open(output_path)
+    for page_number in sorted(WORKOUT_PAGES):
+        if page_number > doc.page_count:
+            continue
+        lines = detect_gold_lines(doc[page_number - 1])
+        titles = titles_by_page.get(page_number, [])
+        for title in titles:
+            candidates = [line for line in lines if title.top + 6 <= line.y <= title.top + 28]
+            if not candidates:
+                add_issue(
+                    issues,
+                    "error",
+                    "missing-title-underline",
+                    "No nearby gold underline was detected below an exercise title",
+                    page=page_number,
+                    sample=title.text,
+                )
+                continue
+            line = min(candidates, key=lambda item: abs(item.y - (title.top + 15)))
+            distance = line.y - title.top
+            if distance < 9 or distance > 20:
+                add_issue(
+                    issues,
+                    "error",
+                    "title-underline-distance",
+                    f"Exercise underline is {distance:.1f}pt below title; expected 9-20pt",
+                    page=page_number,
+                    sample=title.text,
+                )
+            if line.x0 > title.left + 8 or line.x1 < title.left + 180:
+                add_issue(
+                    issues,
+                    "error",
+                    "title-underline-horizontal",
+                    "Exercise underline appears horizontally detached from its title",
+                    page=page_number,
+                    sample=title.text,
+                )
+        for line in lines:
+            nearby_title = any(9 <= line.y - title.top <= 22 for title in titles)
+            if not nearby_title and 88 <= line.y < 585:
+                add_issue(
+                    issues,
+                    "warning",
+                    "orphan-gold-rule",
+                    "Gold underline/divider has no nearby exercise title",
+                    page=page_number,
+                    sample=f"y={line.y:.1f}pt",
+                )
+    doc.close()
+
+
 def issue_counts(issues: Iterable[dict]) -> dict[str, int]:
     counts: dict[str, int] = {}
     for issue in issues:
@@ -298,6 +400,7 @@ def main() -> int:
             for phrase in phrases[:4]:
                 add_issue(issues, "error", "english-phrase", "English phrase longer than two words remains", page=page_number, sample=phrase)
         doc.close()
+        check_exercise_underlines(output_path, overlays, issues)
         preview_files = render_previews(output_path)
 
     report = {

@@ -273,6 +273,11 @@ def span_style(span: dict, bbox: tuple[float, float, float, float]) -> str:
     )
 
 
+def style_number(style: str, key: str, default: float = 0.0) -> float:
+    match = re.search(rf"{re.escape(key)}\s*:\s*([0-9.]+)pt", style)
+    return float(match.group(1)) if match else default
+
+
 def extract_spans(page: fitz.Page, visible_paragraphs: list[str], para_index: int = 0) -> tuple[list[dict], int]:
     raw = page.get_text("rawdict")
     spans: list[dict] = []
@@ -481,7 +486,66 @@ def page_art_patches(page_number: int) -> list[str]:
     return patches
 
 
-def render_textless_page(src: fitz.Document, page_number: int, out_path: Path) -> None:
+def detect_gold_lines(pix: fitz.Pixmap) -> list[float]:
+    width, height, channels = pix.width, pix.height, pix.n
+    samples = pix.samples
+    rows: list[int] = []
+    threshold = max(90, int(width * 0.32))
+    for y in range(height):
+        count = 0
+        row_start = y * width * channels
+        for x in range(width):
+            i = row_start + x * channels
+            r, g, b = samples[i], samples[i + 1], samples[i + 2]
+            if 120 <= r <= 210 and 95 <= g <= 180 and b < 120 and r >= g >= b:
+                count += 1
+        if count >= threshold:
+            rows.append(y)
+
+    groups: list[list[int]] = []
+    for y in rows:
+        if not groups or y > groups[-1][1] + 1:
+            groups.append([y, y])
+        else:
+            groups[-1][1] = y
+    return [((start + end) / 2) / RENDER_ZOOM for start, end in groups]
+
+
+def exercise_title_tops(spans: list[dict]) -> list[float]:
+    tops: list[float] = []
+    for span in spans:
+        text = span.get("text", "").strip()
+        style = span.get("style", "")
+        top = style_number(style, "top")
+        if re.fullmatch(r"\d+/", text) and top >= 88 and style_number(style, "left") < 60 and style_number(style, "font-size") >= 7:
+            if not tops or abs(top - tops[-1]) > 2:
+                tops.append(top)
+    return tops
+
+
+def exercise_underline_patches(page_number: int, spans: list[dict], gold_lines: list[float]) -> list[str]:
+    if workout_header_for_page(page_number) is None:
+        return []
+
+    patches: list[str] = []
+    for line in gold_lines:
+        if 88 <= line <= 705:
+            patches.append(
+                f'<div class="exercise-rule-cover" style="left:42.000pt;top:{line - 0.900:.3f}pt;'
+                'width:528.000pt;height:2.400pt"></div>'
+            )
+
+    title_tops = exercise_title_tops(spans)
+    for top in title_tops:
+        target = top + 14.8
+        patches.append(
+            f'<div class="exercise-rule" style="left:46.800pt;top:{target:.3f}pt;'
+            'width:518.400pt;height:0.720pt"></div>'
+        )
+    return patches
+
+
+def render_textless_page(src: fitz.Document, page_number: int, out_path: Path) -> list[float]:
     single = fitz.open()
     single.insert_pdf(src, from_page=page_number, to_page=page_number)
     page = single[0]
@@ -505,8 +569,10 @@ def render_textless_page(src: fitz.Document, page_number: int, out_path: Path) -
         text=fitz.PDF_REDACT_TEXT_REMOVE,
     )
     pix = page.get_pixmap(matrix=fitz.Matrix(RENDER_ZOOM, RENDER_ZOOM), alpha=False)
+    gold_lines = detect_gold_lines(pix)
     pix.save(out_path)
     single.close()
+    return gold_lines
 
 
 def build_html(pages: list[dict], visible_docx_path: Path) -> str:
@@ -533,6 +599,7 @@ def build_html(pages: list[dict], visible_docx_path: Path) -> str:
         parts.append(
             f'<img class="page-art" src="assets/pages/page-{page["number"]:03d}-background.png" alt="">'
         )
+        parts.extend(exercise_underline_patches(page["number"], page["spans"], page.get("gold_lines", [])))
         parts.extend(page_art_patches(page["number"]))
         for span in page["spans"]:
             text = html.escape(span["text"])
@@ -558,7 +625,7 @@ def main() -> None:
     mapped_paragraphs = 0
     for i, page in enumerate(pdf):
         number = i + 1
-        render_textless_page(pdf, i, ASSETS / f"page-{number:03d}-background.png")
+        gold_lines = render_textless_page(pdf, i, ASSETS / f"page-{number:03d}-background.png")
         if korean_pdf is not None and i == pdf.page_count - 1:
             spans = closing_page_spans(korean_pdf[i])
             used_paragraphs = len(spans)
@@ -578,6 +645,7 @@ def main() -> None:
                 "width": page.rect.width,
                 "height": page.rect.height,
                 "spans": spans,
+                "gold_lines": gold_lines,
             }
         )
 
