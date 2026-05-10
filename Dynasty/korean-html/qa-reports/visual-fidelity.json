@@ -1,0 +1,2065 @@
+{
+  "summary": {
+    "expected_pages": 93,
+    "original_pages": 93,
+    "output_pages": 93,
+    "worst_pages": [
+      4,
+      3,
+      10,
+      6,
+      17,
+      30,
+      8,
+      16,
+      32,
+      23,
+      29,
+      66,
+      80,
+      44,
+      73
+    ],
+    "visual_diff_folder": "qa-previews/visual-diff",
+    "publisher_review_folder": "qa-previews/publisher-review"
+  },
+  "worst_pages": [
+    {
+      "page": 4,
+      "score": 46.727,
+      "region_scores": {
+        "top_header": 51.291,
+        "main_header_bar": 58.855,
+        "exercise_title_area": 54.175,
+        "body_area": 54.081,
+        "table_area": 54.102,
+        "footer": 23.386
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 3,
+      "score": 44.838,
+      "region_scores": {
+        "top_header": 51.036,
+        "main_header_bar": 58.587,
+        "exercise_title_area": 54.465,
+        "body_area": 50.605,
+        "table_area": 54.309,
+        "footer": 25.383
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 10,
+      "score": 41.062,
+      "region_scores": {
+        "top_header": 22.188,
+        "main_header_bar": 31.928,
+        "exercise_title_area": 50.768,
+        "body_area": 50.053,
+        "table_area": 50.424,
+        "footer": 25.048
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 6,
+      "score": 41.029,
+      "region_scores": {
+        "top_header": 21.791,
+        "main_header_bar": 39.372,
+        "exercise_title_area": 52.224,
+        "body_area": 49.889,
+        "table_area": 52.136,
+        "footer": 29.445
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 17,
+      "score": 38.754,
+      "region_scores": {
+        "top_header": 22.6,
+        "main_header_bar": 31.235,
+        "exercise_title_area": 47.11,
+        "body_area": 49.862,
+        "table_area": 50.039,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 30,
+      "score": 38.688,
+      "region_scores": {
+        "top_header": 21.831,
+        "main_header_bar": 32.746,
+        "exercise_title_area": 48.832,
+        "body_area": 45.646,
+        "table_area": 47.914,
+        "footer": 31.675
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 8,
+      "score": 38.424,
+      "region_scores": {
+        "top_header": 21.875,
+        "main_header_bar": 31.784,
+        "exercise_title_area": 48.721,
+        "body_area": 47.641,
+        "table_area": 49.583,
+        "footer": 9.565
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 16,
+      "score": 38.153,
+      "region_scores": {
+        "top_header": 27.316,
+        "main_header_bar": 37.165,
+        "exercise_title_area": 42.402,
+        "body_area": 45.897,
+        "table_area": 45.836,
+        "footer": 30.013
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 32,
+      "score": 37.882,
+      "region_scores": {
+        "top_header": 22.144,
+        "main_header_bar": 31.882,
+        "exercise_title_area": 46.202,
+        "body_area": 48.544,
+        "table_area": 49.5,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 23,
+      "score": 37.374,
+      "region_scores": {
+        "top_header": 21.832,
+        "main_header_bar": 32.003,
+        "exercise_title_area": 43.534,
+        "body_area": 44.494,
+        "table_area": 45.313,
+        "footer": 29.749
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 29,
+      "score": 36.709,
+      "region_scores": {
+        "top_header": 21.746,
+        "main_header_bar": 31.395,
+        "exercise_title_area": 47.888,
+        "body_area": 44.219,
+        "table_area": 45.822,
+        "footer": 25.13
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 66,
+      "score": 36.455,
+      "region_scores": {
+        "top_header": 21.85,
+        "main_header_bar": 31.286,
+        "exercise_title_area": 43.636,
+        "body_area": 43.87,
+        "table_area": 43.776,
+        "footer": 26.537
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 80,
+      "score": 36.131,
+      "region_scores": {
+        "top_header": 21.788,
+        "main_header_bar": 31.23,
+        "exercise_title_area": 42.804,
+        "body_area": 42.624,
+        "table_area": 45.111,
+        "footer": 27.204
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 44,
+      "score": 35.968,
+      "region_scores": {
+        "top_header": 21.807,
+        "main_header_bar": 30.21,
+        "exercise_title_area": 52.328,
+        "body_area": 44.753,
+        "table_area": 46.355,
+        "footer": 19.385
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 73,
+      "score": 35.92,
+      "region_scores": {
+        "top_header": 21.751,
+        "main_header_bar": 31.196,
+        "exercise_title_area": 41.125,
+        "body_area": 42.315,
+        "table_area": 43.387,
+        "footer": 30.27
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 18,
+      "score": 35.89,
+      "region_scores": {
+        "top_header": 24.089,
+        "main_header_bar": 31.815,
+        "exercise_title_area": 45.103,
+        "body_area": 44.531,
+        "table_area": 46.457,
+        "footer": 16.729
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 59,
+      "score": 35.76,
+      "region_scores": {
+        "top_header": 21.871,
+        "main_header_bar": 30.671,
+        "exercise_title_area": 40.302,
+        "body_area": 42.921,
+        "table_area": 43.604,
+        "footer": 25.786
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 25,
+      "score": 35.274,
+      "region_scores": {
+        "top_header": 24.056,
+        "main_header_bar": 32.997,
+        "exercise_title_area": 44.35,
+        "body_area": 43.431,
+        "table_area": 43.946,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 88,
+      "score": 35.038,
+      "region_scores": {
+        "top_header": 21.742,
+        "main_header_bar": 31.188,
+        "exercise_title_area": 39.098,
+        "body_area": 42.081,
+        "table_area": 43.759,
+        "footer": 24.539
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 86,
+      "score": 34.983,
+      "region_scores": {
+        "top_header": 22.098,
+        "main_header_bar": 33.517,
+        "exercise_title_area": 42.705,
+        "body_area": 42.064,
+        "table_area": 42.13,
+        "footer": 26.941
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 65,
+      "score": 34.966,
+      "region_scores": {
+        "top_header": 21.765,
+        "main_header_bar": 30.345,
+        "exercise_title_area": 49.447,
+        "body_area": 41.961,
+        "table_area": 44.41,
+        "footer": 23.738
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 37,
+      "score": 34.892,
+      "region_scores": {
+        "top_header": 21.803,
+        "main_header_bar": 30.205,
+        "exercise_title_area": 52.707,
+        "body_area": 41.788,
+        "table_area": 46.407,
+        "footer": 22.19
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 15,
+      "score": 34.828,
+      "region_scores": {
+        "top_header": 21.784,
+        "main_header_bar": 31.43,
+        "exercise_title_area": 39.573,
+        "body_area": 42.205,
+        "table_area": 42.705,
+        "footer": 24.447
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 38,
+      "score": 34.533,
+      "region_scores": {
+        "top_header": 21.888,
+        "main_header_bar": 30.686,
+        "exercise_title_area": 47.533,
+        "body_area": 40.721,
+        "table_area": 44.823,
+        "footer": 23.979
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 2,
+      "score": 34.442,
+      "region_scores": {
+        "top_header": 49.868,
+        "main_header_bar": 57.802,
+        "exercise_title_area": 48.633,
+        "body_area": 39.272,
+        "table_area": 50.078,
+        "footer": 3.598
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "page": 1,
+      "score": 9.172,
+      "region_scores": {
+        "top_header": 7.559,
+        "main_header_bar": 6.01,
+        "exercise_title_area": 4.936,
+        "body_area": 5.623,
+        "table_area": 4.438,
+        "footer": 12.961
+      },
+      "notes": []
+    },
+    {
+      "page": 2,
+      "score": 34.442,
+      "region_scores": {
+        "top_header": 49.868,
+        "main_header_bar": 57.802,
+        "exercise_title_area": 48.633,
+        "body_area": 39.272,
+        "table_area": 50.078,
+        "footer": 3.598
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 3,
+      "score": 44.838,
+      "region_scores": {
+        "top_header": 51.036,
+        "main_header_bar": 58.587,
+        "exercise_title_area": 54.465,
+        "body_area": 50.605,
+        "table_area": 54.309,
+        "footer": 25.383
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 4,
+      "score": 46.727,
+      "region_scores": {
+        "top_header": 51.291,
+        "main_header_bar": 58.855,
+        "exercise_title_area": 54.175,
+        "body_area": 54.081,
+        "table_area": 54.102,
+        "footer": 23.386
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 5,
+      "score": 25.842,
+      "region_scores": {
+        "top_header": 18.298,
+        "main_header_bar": 24.528,
+        "exercise_title_area": 42.647,
+        "body_area": 33.347,
+        "table_area": 44.396,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 6,
+      "score": 41.029,
+      "region_scores": {
+        "top_header": 21.791,
+        "main_header_bar": 39.372,
+        "exercise_title_area": 52.224,
+        "body_area": 49.889,
+        "table_area": 52.136,
+        "footer": 29.445
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 7,
+      "score": 23.085,
+      "region_scores": {
+        "top_header": 19.685,
+        "main_header_bar": 32.564,
+        "exercise_title_area": 47.394,
+        "body_area": 24.727,
+        "table_area": 39.002,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 8,
+      "score": 38.424,
+      "region_scores": {
+        "top_header": 21.875,
+        "main_header_bar": 31.784,
+        "exercise_title_area": 48.721,
+        "body_area": 47.641,
+        "table_area": 49.583,
+        "footer": 9.565
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 9,
+      "score": 18.089,
+      "region_scores": {
+        "top_header": 29.793,
+        "main_header_bar": 37.376,
+        "exercise_title_area": 33.205,
+        "body_area": 17.678,
+        "table_area": 25.741,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules."
+      ]
+    },
+    {
+      "page": 10,
+      "score": 41.062,
+      "region_scores": {
+        "top_header": 22.188,
+        "main_header_bar": 31.928,
+        "exercise_title_area": 50.768,
+        "body_area": 50.053,
+        "table_area": 50.424,
+        "footer": 25.048
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 11,
+      "score": 32.647,
+      "region_scores": {
+        "top_header": 24.095,
+        "main_header_bar": 31.821,
+        "exercise_title_area": 44.348,
+        "body_area": 40.861,
+        "table_area": 42.573,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 12,
+      "score": 33.976,
+      "region_scores": {
+        "top_header": 23.555,
+        "main_header_bar": 34.543,
+        "exercise_title_area": 42.855,
+        "body_area": 40.7,
+        "table_area": 43.319,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 13,
+      "score": 32.524,
+      "region_scores": {
+        "top_header": 23.596,
+        "main_header_bar": 33.405,
+        "exercise_title_area": 49.323,
+        "body_area": 39.685,
+        "table_area": 48.297,
+        "footer": 12.921
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 14,
+      "score": 23.485,
+      "region_scores": {
+        "top_header": 18.318,
+        "main_header_bar": 21.018,
+        "exercise_title_area": 47.609,
+        "body_area": 30.023,
+        "table_area": 40.022,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 15,
+      "score": 34.828,
+      "region_scores": {
+        "top_header": 21.784,
+        "main_header_bar": 31.43,
+        "exercise_title_area": 39.573,
+        "body_area": 42.205,
+        "table_area": 42.705,
+        "footer": 24.447
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 16,
+      "score": 38.153,
+      "region_scores": {
+        "top_header": 27.316,
+        "main_header_bar": 37.165,
+        "exercise_title_area": 42.402,
+        "body_area": 45.897,
+        "table_area": 45.836,
+        "footer": 30.013
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 17,
+      "score": 38.754,
+      "region_scores": {
+        "top_header": 22.6,
+        "main_header_bar": 31.235,
+        "exercise_title_area": 47.11,
+        "body_area": 49.862,
+        "table_area": 50.039,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 18,
+      "score": 35.89,
+      "region_scores": {
+        "top_header": 24.089,
+        "main_header_bar": 31.815,
+        "exercise_title_area": 45.103,
+        "body_area": 44.531,
+        "table_area": 46.457,
+        "footer": 16.729
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 19,
+      "score": 32.993,
+      "region_scores": {
+        "top_header": 23.549,
+        "main_header_bar": 32.271,
+        "exercise_title_area": 40.737,
+        "body_area": 40.945,
+        "table_area": 40.589,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 20,
+      "score": 31.233,
+      "region_scores": {
+        "top_header": 23.589,
+        "main_header_bar": 33.225,
+        "exercise_title_area": 43.601,
+        "body_area": 36.83,
+        "table_area": 43.808,
+        "footer": 17.003
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 21,
+      "score": 22.951,
+      "region_scores": {
+        "top_header": 18.3,
+        "main_header_bar": 20.998,
+        "exercise_title_area": 46.217,
+        "body_area": 29.25,
+        "table_area": 39.03,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 22,
+      "score": 32.221,
+      "region_scores": {
+        "top_header": 21.747,
+        "main_header_bar": 31.397,
+        "exercise_title_area": 38.472,
+        "body_area": 39.657,
+        "table_area": 40.692,
+        "footer": 8.413
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 23,
+      "score": 37.374,
+      "region_scores": {
+        "top_header": 21.832,
+        "main_header_bar": 32.003,
+        "exercise_title_area": 43.534,
+        "body_area": 44.494,
+        "table_area": 45.313,
+        "footer": 29.749
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 24,
+      "score": 33.279,
+      "region_scores": {
+        "top_header": 22.145,
+        "main_header_bar": 31.57,
+        "exercise_title_area": 46.069,
+        "body_area": 41.902,
+        "table_area": 45.546,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 25,
+      "score": 35.274,
+      "region_scores": {
+        "top_header": 24.056,
+        "main_header_bar": 32.997,
+        "exercise_title_area": 44.35,
+        "body_area": 43.431,
+        "table_area": 43.946,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 26,
+      "score": 31.522,
+      "region_scores": {
+        "top_header": 23.515,
+        "main_header_bar": 33.127,
+        "exercise_title_area": 42.879,
+        "body_area": 39.274,
+        "table_area": 40.807,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 27,
+      "score": 29.783,
+      "region_scores": {
+        "top_header": 23.556,
+        "main_header_bar": 32.886,
+        "exercise_title_area": 42.418,
+        "body_area": 35.58,
+        "table_area": 42.502,
+        "footer": 16.2
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 28,
+      "score": 21.934,
+      "region_scores": {
+        "top_header": 18.314,
+        "main_header_bar": 21.013,
+        "exercise_title_area": 37.403,
+        "body_area": 28.377,
+        "table_area": 37.124,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 29,
+      "score": 36.709,
+      "region_scores": {
+        "top_header": 21.746,
+        "main_header_bar": 31.395,
+        "exercise_title_area": 47.888,
+        "body_area": 44.219,
+        "table_area": 45.822,
+        "footer": 25.13
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 30,
+      "score": 38.688,
+      "region_scores": {
+        "top_header": 21.831,
+        "main_header_bar": 32.746,
+        "exercise_title_area": 48.832,
+        "body_area": 45.646,
+        "table_area": 47.914,
+        "footer": 31.675
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 31,
+      "score": 14.64,
+      "region_scores": {
+        "top_header": 37.789,
+        "main_header_bar": 44.625,
+        "exercise_title_area": 11.676,
+        "body_area": 0.0,
+        "table_area": 9.051,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement."
+      ]
+    },
+    {
+      "page": 32,
+      "score": 37.882,
+      "region_scores": {
+        "top_header": 22.144,
+        "main_header_bar": 31.882,
+        "exercise_title_area": 46.202,
+        "body_area": 48.544,
+        "table_area": 49.5,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 33,
+      "score": 29.988,
+      "region_scores": {
+        "top_header": 24.055,
+        "main_header_bar": 32.541,
+        "exercise_title_area": 33.283,
+        "body_area": 37.648,
+        "table_area": 41.432,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 34,
+      "score": 31.929,
+      "region_scores": {
+        "top_header": 23.514,
+        "main_header_bar": 32.837,
+        "exercise_title_area": 36.784,
+        "body_area": 40.349,
+        "table_area": 40.003,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 35,
+      "score": 26.076,
+      "region_scores": {
+        "top_header": 23.554,
+        "main_header_bar": 32.878,
+        "exercise_title_area": 40.831,
+        "body_area": 29.93,
+        "table_area": 41.721,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 36,
+      "score": 22.964,
+      "region_scores": {
+        "top_header": 18.335,
+        "main_header_bar": 21.038,
+        "exercise_title_area": 46.241,
+        "body_area": 29.263,
+        "table_area": 39.046,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 37,
+      "score": 34.892,
+      "region_scores": {
+        "top_header": 21.803,
+        "main_header_bar": 30.205,
+        "exercise_title_area": 52.707,
+        "body_area": 41.788,
+        "table_area": 46.407,
+        "footer": 22.19
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 38,
+      "score": 34.533,
+      "region_scores": {
+        "top_header": 21.888,
+        "main_header_bar": 30.686,
+        "exercise_title_area": 47.533,
+        "body_area": 40.721,
+        "table_area": 44.823,
+        "footer": 23.979
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 39,
+      "score": 33.743,
+      "region_scores": {
+        "top_header": 22.2,
+        "main_header_bar": 31.613,
+        "exercise_title_area": 46.982,
+        "body_area": 42.534,
+        "table_area": 43.356,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 40,
+      "score": 31.532,
+      "region_scores": {
+        "top_header": 24.106,
+        "main_header_bar": 32.873,
+        "exercise_title_area": 40.381,
+        "body_area": 39.631,
+        "table_area": 43.945,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 41,
+      "score": 32.811,
+      "region_scores": {
+        "top_header": 23.566,
+        "main_header_bar": 32.282,
+        "exercise_title_area": 41.327,
+        "body_area": 41.206,
+        "table_area": 43.959,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 42,
+      "score": 29.395,
+      "region_scores": {
+        "top_header": 26.462,
+        "main_header_bar": 35.457,
+        "exercise_title_area": 48.573,
+        "body_area": 35.422,
+        "table_area": 45.81,
+        "footer": 4.568
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 43,
+      "score": 20.2,
+      "region_scores": {
+        "top_header": 7.785,
+        "main_header_bar": 19.889,
+        "exercise_title_area": 33.366,
+        "body_area": 25.861,
+        "table_area": 35.488,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 44,
+      "score": 35.968,
+      "region_scores": {
+        "top_header": 21.807,
+        "main_header_bar": 30.21,
+        "exercise_title_area": 52.328,
+        "body_area": 44.753,
+        "table_area": 46.355,
+        "footer": 19.385
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 45,
+      "score": 33.41,
+      "region_scores": {
+        "top_header": 21.892,
+        "main_header_bar": 30.691,
+        "exercise_title_area": 38.657,
+        "body_area": 40.757,
+        "table_area": 40.29,
+        "footer": 22.229
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 46,
+      "score": 30.763,
+      "region_scores": {
+        "top_header": 22.204,
+        "main_header_bar": 31.229,
+        "exercise_title_area": 44.848,
+        "body_area": 38.237,
+        "table_area": 43.253,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 47,
+      "score": 31.364,
+      "region_scores": {
+        "top_header": 24.11,
+        "main_header_bar": 32.877,
+        "exercise_title_area": 37.137,
+        "body_area": 39.343,
+        "table_area": 42.597,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 48,
+      "score": 32.869,
+      "region_scores": {
+        "top_header": 23.571,
+        "main_header_bar": 33.543,
+        "exercise_title_area": 43.253,
+        "body_area": 40.913,
+        "table_area": 44.683,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 49,
+      "score": 28.713,
+      "region_scores": {
+        "top_header": 23.611,
+        "main_header_bar": 32.559,
+        "exercise_title_area": 45.979,
+        "body_area": 34.713,
+        "table_area": 42.354,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 50,
+      "score": 21.551,
+      "region_scores": {
+        "top_header": 18.2,
+        "main_header_bar": 20.883,
+        "exercise_title_area": 37.399,
+        "body_area": 27.845,
+        "table_area": 36.428,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 51,
+      "score": 34.084,
+      "region_scores": {
+        "top_header": 21.751,
+        "main_header_bar": 30.156,
+        "exercise_title_area": 48.783,
+        "body_area": 42.001,
+        "table_area": 44.993,
+        "footer": 7.991
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 52,
+      "score": 33.739,
+      "region_scores": {
+        "top_header": 21.836,
+        "main_header_bar": 30.638,
+        "exercise_title_area": 36.883,
+        "body_area": 41.537,
+        "table_area": 41.505,
+        "footer": 14.839
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 53,
+      "score": 29.601,
+      "region_scores": {
+        "top_header": 22.149,
+        "main_header_bar": 31.566,
+        "exercise_title_area": 35.614,
+        "body_area": 37.493,
+        "table_area": 42.103,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 54,
+      "score": 30.945,
+      "region_scores": {
+        "top_header": 24.059,
+        "main_header_bar": 34.37,
+        "exercise_title_area": 38.252,
+        "body_area": 38.894,
+        "table_area": 43.192,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 55,
+      "score": 32.255,
+      "region_scores": {
+        "top_header": 23.518,
+        "main_header_bar": 32.911,
+        "exercise_title_area": 45.331,
+        "body_area": 40.115,
+        "table_area": 43.124,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 56,
+      "score": 28.873,
+      "region_scores": {
+        "top_header": 25.672,
+        "main_header_bar": 29.457,
+        "exercise_title_area": 34.923,
+        "body_area": 36.861,
+        "table_area": 42.004,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 57,
+      "score": 21.929,
+      "region_scores": {
+        "top_header": 18.38,
+        "main_header_bar": 21.09,
+        "exercise_title_area": 40.258,
+        "body_area": 28.359,
+        "table_area": 37.101,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 58,
+      "score": 32.575,
+      "region_scores": {
+        "top_header": 21.786,
+        "main_header_bar": 30.19,
+        "exercise_title_area": 38.037,
+        "body_area": 40.878,
+        "table_area": 43.046,
+        "footer": 6.827
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 59,
+      "score": 35.76,
+      "region_scores": {
+        "top_header": 21.871,
+        "main_header_bar": 30.671,
+        "exercise_title_area": 40.302,
+        "body_area": 42.921,
+        "table_area": 43.604,
+        "footer": 25.786
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 60,
+      "score": 33.384,
+      "region_scores": {
+        "top_header": 22.184,
+        "main_header_bar": 31.918,
+        "exercise_title_area": 53.242,
+        "body_area": 42.01,
+        "table_area": 48.334,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 61,
+      "score": 28.524,
+      "region_scores": {
+        "top_header": 24.091,
+        "main_header_bar": 33.081,
+        "exercise_title_area": 32.164,
+        "body_area": 35.537,
+        "table_area": 34.363,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 62,
+      "score": 32.005,
+      "region_scores": {
+        "top_header": 23.551,
+        "main_header_bar": 32.941,
+        "exercise_title_area": 44.296,
+        "body_area": 39.532,
+        "table_area": 43.74,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 63,
+      "score": 29.054,
+      "region_scores": {
+        "top_header": 23.591,
+        "main_header_bar": 37.95,
+        "exercise_title_area": 40.595,
+        "body_area": 34.965,
+        "table_area": 43.97,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 64,
+      "score": 21.933,
+      "region_scores": {
+        "top_header": 18.351,
+        "main_header_bar": 21.057,
+        "exercise_title_area": 40.28,
+        "body_area": 28.37,
+        "table_area": 37.115,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 65,
+      "score": 34.966,
+      "region_scores": {
+        "top_header": 21.765,
+        "main_header_bar": 30.345,
+        "exercise_title_area": 49.447,
+        "body_area": 41.961,
+        "table_area": 44.41,
+        "footer": 23.738
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 66,
+      "score": 36.455,
+      "region_scores": {
+        "top_header": 21.85,
+        "main_header_bar": 31.286,
+        "exercise_title_area": 43.636,
+        "body_area": 43.87,
+        "table_area": 43.776,
+        "footer": 26.537
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 67,
+      "score": 32.036,
+      "region_scores": {
+        "top_header": 22.162,
+        "main_header_bar": 31.898,
+        "exercise_title_area": 45.197,
+        "body_area": 40.914,
+        "table_area": 43.375,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 68,
+      "score": 29.695,
+      "region_scores": {
+        "top_header": 24.071,
+        "main_header_bar": 31.535,
+        "exercise_title_area": 37.722,
+        "body_area": 36.504,
+        "table_area": 38.678,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 69,
+      "score": 30.405,
+      "region_scores": {
+        "top_header": 23.531,
+        "main_header_bar": 29.534,
+        "exercise_title_area": 38.362,
+        "body_area": 38.218,
+        "table_area": 39.61,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 70,
+      "score": 31.65,
+      "region_scores": {
+        "top_header": 23.572,
+        "main_header_bar": 36.175,
+        "exercise_title_area": 50.537,
+        "body_area": 38.259,
+        "table_area": 47.975,
+        "footer": 18.183
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 71,
+      "score": 21.92,
+      "region_scores": {
+        "top_header": 18.368,
+        "main_header_bar": 21.075,
+        "exercise_title_area": 40.248,
+        "body_area": 28.349,
+        "table_area": 37.087,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 72,
+      "score": 30.374,
+      "region_scores": {
+        "top_header": 22.119,
+        "main_header_bar": 25.38,
+        "exercise_title_area": 30.838,
+        "body_area": 37.123,
+        "table_area": 35.552,
+        "footer": 15.538
+      },
+      "notes": [
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 73,
+      "score": 35.92,
+      "region_scores": {
+        "top_header": 21.751,
+        "main_header_bar": 31.196,
+        "exercise_title_area": 41.125,
+        "body_area": 42.315,
+        "table_area": 43.387,
+        "footer": 30.27
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 74,
+      "score": 28.235,
+      "region_scores": {
+        "top_header": 22.223,
+        "main_header_bar": 31.635,
+        "exercise_title_area": 40.276,
+        "body_area": 35.097,
+        "table_area": 42.783,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 75,
+      "score": 29.643,
+      "region_scores": {
+        "top_header": 21.254,
+        "main_header_bar": 28.864,
+        "exercise_title_area": 37.534,
+        "body_area": 37.017,
+        "table_area": 40.826,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 76,
+      "score": 29.442,
+      "region_scores": {
+        "top_header": 23.316,
+        "main_header_bar": 33.95,
+        "exercise_title_area": 34.087,
+        "body_area": 36.597,
+        "table_area": 35.819,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 77,
+      "score": 30.373,
+      "region_scores": {
+        "top_header": 23.654,
+        "main_header_bar": 33.179,
+        "exercise_title_area": 36.807,
+        "body_area": 38.448,
+        "table_area": 44.512,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 78,
+      "score": 21.931,
+      "region_scores": {
+        "top_header": 18.446,
+        "main_header_bar": 21.165,
+        "exercise_title_area": 40.258,
+        "body_area": 28.352,
+        "table_area": 37.092,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 79,
+      "score": 31.762,
+      "region_scores": {
+        "top_header": 21.699,
+        "main_header_bar": 30.283,
+        "exercise_title_area": 34.521,
+        "body_area": 37.596,
+        "table_area": 37.749,
+        "footer": 11.723
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 80,
+      "score": 36.131,
+      "region_scores": {
+        "top_header": 21.788,
+        "main_header_bar": 31.23,
+        "exercise_title_area": 42.804,
+        "body_area": 42.624,
+        "table_area": 45.111,
+        "footer": 27.204
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 81,
+      "score": 29.296,
+      "region_scores": {
+        "top_header": 22.163,
+        "main_header_bar": 31.899,
+        "exercise_title_area": 43.097,
+        "body_area": 36.491,
+        "table_area": 44.622,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 82,
+      "score": 31.044,
+      "region_scores": {
+        "top_header": 21.316,
+        "main_header_bar": 29.087,
+        "exercise_title_area": 37.482,
+        "body_area": 39.391,
+        "table_area": 40.026,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 83,
+      "score": 29.276,
+      "region_scores": {
+        "top_header": 23.464,
+        "main_header_bar": 32.184,
+        "exercise_title_area": 37.574,
+        "body_area": 36.628,
+        "table_area": 38.844,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 84,
+      "score": 27.924,
+      "region_scores": {
+        "top_header": 23.597,
+        "main_header_bar": 33.349,
+        "exercise_title_area": 36.255,
+        "body_area": 34.416,
+        "table_area": 41.366,
+        "footer": 7.634
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 85,
+      "score": 21.933,
+      "region_scores": {
+        "top_header": 18.458,
+        "main_header_bar": 21.179,
+        "exercise_title_area": 40.259,
+        "body_area": 28.353,
+        "table_area": 37.093,
+        "footer": 4.342
+      },
+      "notes": [
+        "Table/overview area differs; check table proportions, row heights, borders, and font weight.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 86,
+      "score": 34.983,
+      "region_scores": {
+        "top_header": 22.098,
+        "main_header_bar": 33.517,
+        "exercise_title_area": 42.705,
+        "body_area": 42.064,
+        "table_area": 42.13,
+        "footer": 26.941
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 87,
+      "score": 10.698,
+      "region_scores": {
+        "top_header": 27.756,
+        "main_header_bar": 33.585,
+        "exercise_title_area": 7.688,
+        "body_area": 0.0,
+        "table_area": 5.96,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement."
+      ]
+    },
+    {
+      "page": 88,
+      "score": 35.038,
+      "region_scores": {
+        "top_header": 21.742,
+        "main_header_bar": 31.188,
+        "exercise_title_area": 39.098,
+        "body_area": 42.081,
+        "table_area": 43.759,
+        "footer": 24.539
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    },
+    {
+      "page": 89,
+      "score": 29.049,
+      "region_scores": {
+        "top_header": 22.652,
+        "main_header_bar": 25.992,
+        "exercise_title_area": 41.447,
+        "body_area": 37.164,
+        "table_area": 42.073,
+        "footer": 4.342
+      },
+      "notes": [
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 90,
+      "score": 30.052,
+      "region_scores": {
+        "top_header": 21.33,
+        "main_header_bar": 30.641,
+        "exercise_title_area": 39.751,
+        "body_area": 37.808,
+        "table_area": 41.318,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 91,
+      "score": 31.288,
+      "region_scores": {
+        "top_header": 23.308,
+        "main_header_bar": 32.034,
+        "exercise_title_area": 40.329,
+        "body_area": 39.692,
+        "table_area": 40.902,
+        "footer": 4.342
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 92,
+      "score": 29.848,
+      "region_scores": {
+        "top_header": 23.646,
+        "main_header_bar": 33.172,
+        "exercise_title_area": 36.746,
+        "body_area": 35.742,
+        "table_area": 43.134,
+        "footer": 13.673
+      },
+      "notes": [
+        "Header/bar region differs strongly; inspect black/gold patch sizing and title placement.",
+        "Exercise title/underline area differs; check title coordinates and gold rules.",
+        "Body region differs; check text density, font size, and vertical rhythm."
+      ]
+    },
+    {
+      "page": 93,
+      "score": 30.784,
+      "region_scores": {
+        "top_header": 4.784,
+        "main_header_bar": 6.245,
+        "exercise_title_area": 4.571,
+        "body_area": 35.2,
+        "table_area": 4.257,
+        "footer": 24.243
+      },
+      "notes": [
+        "Body region differs; check text density, font size, and vertical rhythm.",
+        "Footer/lower-page relationship differs."
+      ]
+    }
+  ]
+}

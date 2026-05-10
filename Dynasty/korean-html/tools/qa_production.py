@@ -30,7 +30,7 @@ WORKOUT_PAGES = (
     | set(range(79, 85))
     | set(range(86, 93))
 )
-PATCH_PAGES = {2, 3, 4, 5} | WEEKLY_SPLIT_PAGES | WORKOUT_PAGES
+PATCH_PAGES = {2, 3, 4, 5} | WEEKLY_SPLIT_PAGES
 PLACEHOLDERS = ["TODO_TRANSLATE", "한국어 번역문", "한국어 섹션 제목"]
 SUSPICIOUS_TERMS = [
     "T바",

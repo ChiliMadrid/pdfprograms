@@ -1,0 +1,133 @@
+# Dynasty Visual Fidelity Audit
+
+## Summary
+
+- `expected_pages`: 93
+- `original_pages`: 93
+- `output_pages`: 93
+- `worst_pages`: [4, 3, 10, 6, 17, 30, 8, 16, 32, 23, 29, 66, 80, 44, 73]
+- `visual_diff_folder`: qa-previews/visual-diff
+- `publisher_review_folder`: qa-previews/publisher-review
+
+## Worst Pages
+
+- Page 4: score 46.727; regions={'top_header': 51.291, 'main_header_bar': 58.855, 'exercise_title_area': 54.175, 'body_area': 54.081, 'table_area': 54.102, 'footer': 23.386}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 3: score 44.838; regions={'top_header': 51.036, 'main_header_bar': 58.587, 'exercise_title_area': 54.465, 'body_area': 50.605, 'table_area': 54.309, 'footer': 25.383}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Table/overview area differs; check table proportions, row heights, borders, and font weight.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 10: score 41.062; regions={'top_header': 22.188, 'main_header_bar': 31.928, 'exercise_title_area': 50.768, 'body_area': 50.053, 'table_area': 50.424, 'footer': 25.048}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 6: score 41.029; regions={'top_header': 21.791, 'main_header_bar': 39.372, 'exercise_title_area': 52.224, 'body_area': 49.889, 'table_area': 52.136, 'footer': 29.445}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 17: score 38.754; regions={'top_header': 22.6, 'main_header_bar': 31.235, 'exercise_title_area': 47.11, 'body_area': 49.862, 'table_area': 50.039, 'footer': 4.342}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+- Page 30: score 38.688; regions={'top_header': 21.831, 'main_header_bar': 32.746, 'exercise_title_area': 48.832, 'body_area': 45.646, 'table_area': 47.914, 'footer': 31.675}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 8: score 38.424; regions={'top_header': 21.875, 'main_header_bar': 31.784, 'exercise_title_area': 48.721, 'body_area': 47.641, 'table_area': 49.583, 'footer': 9.565}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+- Page 16: score 38.153; regions={'top_header': 27.316, 'main_header_bar': 37.165, 'exercise_title_area': 42.402, 'body_area': 45.897, 'table_area': 45.836, 'footer': 30.013}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 32: score 37.882; regions={'top_header': 22.144, 'main_header_bar': 31.882, 'exercise_title_area': 46.202, 'body_area': 48.544, 'table_area': 49.5, 'footer': 4.342}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+- Page 23: score 37.374; regions={'top_header': 21.832, 'main_header_bar': 32.003, 'exercise_title_area': 43.534, 'body_area': 44.494, 'table_area': 45.313, 'footer': 29.749}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 29: score 36.709; regions={'top_header': 21.746, 'main_header_bar': 31.395, 'exercise_title_area': 47.888, 'body_area': 44.219, 'table_area': 45.822, 'footer': 25.13}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 66: score 36.455; regions={'top_header': 21.85, 'main_header_bar': 31.286, 'exercise_title_area': 43.636, 'body_area': 43.87, 'table_area': 43.776, 'footer': 26.537}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 80: score 36.131; regions={'top_header': 21.788, 'main_header_bar': 31.23, 'exercise_title_area': 42.804, 'body_area': 42.624, 'table_area': 45.111, 'footer': 27.204}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 44: score 35.968; regions={'top_header': 21.807, 'main_header_bar': 30.21, 'exercise_title_area': 52.328, 'body_area': 44.753, 'table_area': 46.355, 'footer': 19.385}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+- Page 73: score 35.92; regions={'top_header': 21.751, 'main_header_bar': 31.196, 'exercise_title_area': 41.125, 'body_area': 42.315, 'table_area': 43.387, 'footer': 30.27}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 18: score 35.89; regions={'top_header': 24.089, 'main_header_bar': 31.815, 'exercise_title_area': 45.103, 'body_area': 44.531, 'table_area': 46.457, 'footer': 16.729}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+- Page 59: score 35.76; regions={'top_header': 21.871, 'main_header_bar': 30.671, 'exercise_title_area': 40.302, 'body_area': 42.921, 'table_area': 43.604, 'footer': 25.786}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 25: score 35.274; regions={'top_header': 24.056, 'main_header_bar': 32.997, 'exercise_title_area': 44.35, 'body_area': 43.431, 'table_area': 43.946, 'footer': 4.342}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+- Page 88: score 35.038; regions={'top_header': 21.742, 'main_header_bar': 31.188, 'exercise_title_area': 39.098, 'body_area': 42.081, 'table_area': 43.759, 'footer': 24.539}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 86: score 34.983; regions={'top_header': 22.098, 'main_header_bar': 33.517, 'exercise_title_area': 42.705, 'body_area': 42.064, 'table_area': 42.13, 'footer': 26.941}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 65: score 34.966; regions={'top_header': 21.765, 'main_header_bar': 30.345, 'exercise_title_area': 49.447, 'body_area': 41.961, 'table_area': 44.41, 'footer': 23.738}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 37: score 34.892; regions={'top_header': 21.803, 'main_header_bar': 30.205, 'exercise_title_area': 52.707, 'body_area': 41.788, 'table_area': 46.407, 'footer': 22.19}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 15: score 34.828; regions={'top_header': 21.784, 'main_header_bar': 31.43, 'exercise_title_area': 39.573, 'body_area': 42.205, 'table_area': 42.705, 'footer': 24.447}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 38: score 34.533; regions={'top_header': 21.888, 'main_header_bar': 30.686, 'exercise_title_area': 47.533, 'body_area': 40.721, 'table_area': 44.823, 'footer': 23.979}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.
+  - Footer/lower-page relationship differs.
+- Page 2: score 34.442; regions={'top_header': 49.868, 'main_header_bar': 57.802, 'exercise_title_area': 48.633, 'body_area': 39.272, 'table_area': 50.078, 'footer': 3.598}
+  - Header/bar region differs strongly; inspect black/gold patch sizing and title placement.
+  - Table/overview area differs; check table proportions, row heights, borders, and font weight.
+  - Exercise title/underline area differs; check title coordinates and gold rules.
+  - Body region differs; check text density, font size, and vertical rhythm.

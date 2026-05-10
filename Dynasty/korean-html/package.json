@@ -9,7 +9,8 @@
     "verify": "python tools/verify_project.py",
     "audit": "python tools/audit_missing_content.py",
     "qa": "python tools/qa_production.py",
-    "final-check": "npm run generate && npm run export && npm run verify && npm run audit && npm run qa"
+    "visual-audit": "python tools/visual_fidelity_audit.py",
+    "final-check": "npm run generate && npm run export && npm run verify && npm run audit && npm run qa && npm run visual-audit"
   },
   "devDependencies": {
     "http-server": "^14.1.1",

@@ -82,6 +82,13 @@ qa-reports/missing-content.json
 qa-reports/missing-content.md
 ```
 
+The visual fidelity audit writes:
+
+```text
+qa-reports/visual-fidelity.json
+qa-reports/visual-fidelity.md
+```
+
 Preview PNGs are written to `qa-previews/` for pages:
 
 ```text
@@ -101,6 +108,39 @@ Open this contact sheet for a fast human scan:
 ```text
 qa-previews/contact-sheet.html
 ```
+
+Rendered original/generated visual comparisons are written to:
+
+```text
+qa-previews/visual-diff/
+qa-previews/publisher-review/
+```
+
+## Publisher Review / Prepress QA
+
+Passing automated QA does not equal publisher approval. Before delivery, run:
+
+```powershell
+npm run final-check
+```
+
+Then review:
+
+- `qa-reports/visual-fidelity.md` for the highest-difference pages.
+- `qa-previews/visual-diff/contact-sheet.html` for all rendered side-by-side page comparisons.
+- `qa-previews/publisher-review/index.html` for the curated prepress review set.
+- `qa-reports/missing-content.md` for any page with a nonzero missing-content score.
+
+Human review should inspect:
+
+- black/gold header bar size, position, and title alignment
+- weekly overview table proportions and row spacing
+- exercise title placement and gold underline attachment
+- Korean body text density and vertical rhythm
+- footer/header relationships
+- any page where art patches look visibly different from the original design
+
+Pages still requiring manual visual approval are the pages ranked in `qa-reports/visual-fidelity.md`, especially the current worst visual-difference pages. The visual audit intentionally ranks differences but does not fail automatically yet, because Korean text replacement will always produce some image-level difference from the English original.
 
 After regenerating or editing the overlay, verify:
 

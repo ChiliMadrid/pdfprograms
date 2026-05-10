@@ -427,7 +427,7 @@ def split_method_table_patch() -> str:
     return art_cover(43.7, 304.2, 525.0, 70.0) + art_table(rows, 43.7, 304.2, 525.0, 10.45, "split-method-table")
 
 
-def weekly_split_table_patch() -> str:
+def weekly_split_table_patch(top: float = 173.1) -> str:
     rows = [
         ["요일", "초점", "운동", "세트"],
         ["월요일", "당기기", "8", "28"],
@@ -438,7 +438,7 @@ def weekly_split_table_patch() -> str:
         ["토요일", "하체(펌프)", "5", "18"],
         ["일요일", "휴식", "0", "0"],
     ]
-    return art_cover(43.7, 173.1, 525.0, 170.0) + art_table(rows, 43.7, 173.1, 525.0, 20.4, "weekly-split-table")
+    return art_cover(43.7, top, 525.0, 170.0) + art_table(rows, 43.7, top, 525.0, 20.4, "weekly-split-table")
 
 
 WEEK_SPLIT_PAGES = {5, 14, 21, 28, 36, 43, 50, 57, 64, 71, 78, 85}
@@ -473,7 +473,25 @@ def workout_header_for_page(page_number: int) -> tuple[int, str] | None:
     return None
 
 
-def page_art_patches(page_number: int) -> list[str]:
+def header_band(page: dict) -> tuple[float, float] | None:
+    for start, end in page.get("black_bands", []):
+        if 35 <= start <= 135 and end - start >= 20:
+            return start, max(30.0, end - start + 1.0)
+    return None
+
+
+def table_band(page: dict) -> float:
+    bands = page.get("black_bands", [])
+    head = header_band(page)
+    min_top = (head[1] + head[0] + 25) if head else 120
+    for start, end in bands:
+        if start >= min_top and end - start >= 10:
+            return start
+    return 173.1
+
+
+def page_art_patches(page: dict) -> list[str]:
+    page_number = page["number"]
     patches: list[str] = []
     if page_number == 2:
         patches.append(art_header("목차", "프로그램 로드맵"))
@@ -487,15 +505,19 @@ def page_art_patches(page_number: int) -> list[str]:
         patches.append(art_header("적절한 강도", "RPE 기준표 사용", top=468.6))
     elif page_number in WEEK_SPLIT_PAGES:
         week = sorted(WEEK_SPLIT_PAGES).index(page_number) + 1
-        patches.append(art_header(f"{week}주차", "주간 트레이닝 개요"))
-        patches.append(weekly_split_table_patch())
+        band = header_band(page)
+        top, height = band if band else (43.5, 38.5)
+        patches.append(art_header(f"{week}주차", "주간 트레이닝 개요", top=top, height=height))
+        patches.append(weekly_split_table_patch(table_band(page)))
     else:
         header = workout_header_for_page(page_number)
-        if header:
+        band = header_band(page)
+        if header and band:
             week, day_key = header
             title, subtitle = DAY_TITLES[day_key]
             pump_suffix = " - 펌프 전용" if day_key in {"thursday", "friday", "saturday"} else ""
-            patches.append(art_header(f"{week}주차 - {title}{pump_suffix}", subtitle, height=58.0))
+            top, height = band
+            patches.append(art_header(f"{week}주차 - {title}{pump_suffix}", subtitle, top=top, height=height))
     return patches
 
 
@@ -522,6 +544,30 @@ def detect_gold_lines(pix: fitz.Pixmap) -> list[float]:
         else:
             groups[-1][1] = y
     return [((start + end) / 2) / RENDER_ZOOM for start, end in groups]
+
+
+def detect_black_bands(pix: fitz.Pixmap) -> list[tuple[float, float]]:
+    width, height, channels = pix.width, pix.height, pix.n
+    samples = pix.samples
+    rows: list[int] = []
+    threshold = int(width * 0.45)
+    for y in range(min(height, int(300 * RENDER_ZOOM))):
+        count = 0
+        row_start = y * width * channels
+        for x in range(width):
+            i = row_start + x * channels
+            r, g, b = samples[i], samples[i + 1], samples[i + 2]
+            if r < 45 and g < 45 and b < 45:
+                count += 1
+        if count >= threshold:
+            rows.append(y)
+    groups: list[list[int]] = []
+    for y in rows:
+        if not groups or y > groups[-1][1] + 1:
+            groups.append([y, y])
+        else:
+            groups[-1][1] = y
+    return [(start / RENDER_ZOOM, end / RENDER_ZOOM) for start, end in groups]
 
 
 def exercise_title_tops(spans: list[dict]) -> list[float]:
@@ -558,7 +604,7 @@ def exercise_underline_patches(page_number: int, spans: list[dict], gold_lines: 
     return patches
 
 
-def render_textless_page(src: fitz.Document, page_number: int, out_path: Path) -> list[float]:
+def render_textless_page(src: fitz.Document, page_number: int, out_path: Path) -> tuple[list[float], list[tuple[float, float]]]:
     single = fitz.open()
     single.insert_pdf(src, from_page=page_number, to_page=page_number)
     page = single[0]
@@ -583,9 +629,10 @@ def render_textless_page(src: fitz.Document, page_number: int, out_path: Path) -
     )
     pix = page.get_pixmap(matrix=fitz.Matrix(RENDER_ZOOM, RENDER_ZOOM), alpha=False)
     gold_lines = detect_gold_lines(pix)
+    black_bands = detect_black_bands(pix)
     pix.save(out_path)
     single.close()
-    return gold_lines
+    return gold_lines, black_bands
 
 
 def build_html(pages: list[dict], visible_docx_path: Path) -> str:
@@ -613,7 +660,7 @@ def build_html(pages: list[dict], visible_docx_path: Path) -> str:
             f'<img class="page-art" src="assets/pages/page-{page["number"]:03d}-background.png" alt="">'
         )
         parts.extend(exercise_underline_patches(page["number"], page["spans"], page.get("gold_lines", [])))
-        parts.extend(page_art_patches(page["number"]))
+        parts.extend(page_art_patches(page))
         for span in page["spans"]:
             text = html.escape(span["text"])
             source = html.escape(span["source"])
@@ -638,7 +685,7 @@ def main() -> None:
     mapped_paragraphs = 0
     for i, page in enumerate(pdf):
         number = i + 1
-        gold_lines = render_textless_page(pdf, i, ASSETS / f"page-{number:03d}-background.png")
+        gold_lines, black_bands = render_textless_page(pdf, i, ASSETS / f"page-{number:03d}-background.png")
         if korean_pdf is not None and i == pdf.page_count - 1:
             spans = closing_page_spans(korean_pdf[i])
             used_paragraphs = len(spans)
@@ -659,6 +706,7 @@ def main() -> None:
                 "height": page.rect.height,
                 "spans": spans,
                 "gold_lines": gold_lines,
+                "black_bands": black_bands,
             }
         )
 
