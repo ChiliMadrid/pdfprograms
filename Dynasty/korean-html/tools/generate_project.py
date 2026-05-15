@@ -273,6 +273,36 @@ def span_style(span: dict, bbox: tuple[float, float, float, float]) -> str:
     )
 
 
+def line_style_from_original(line: dict, text: str) -> str:
+    x0, y0, x1, y1 = (float(v) for v in line["bbox"])
+    spans = line.get("spans", [])
+    sizes = [float(span.get("size", 9)) for span in spans]
+    size = max(sizes) if sizes else 9.0
+    fonts = " ".join(str(span.get("font", "")) for span in spans)
+    flags = sum(int(span.get("flags", 0)) for span in spans)
+    is_title = bool(re.match(r"\d+/", text))
+    is_label = bool(re.match(r"(총 작업|RPE|목표|슈퍼세트)", text, re.I))
+    weight = "800" if is_title or is_label or "Bold" in fonts or flags & 16 else "400"
+    if text.startswith("슈퍼세트"):
+        color = "#ff0000"
+        ko_size = 9.8
+        weight = "800"
+    elif is_label:
+        color = "#b6a259" if not text.startswith("RPE") else "#b6a259"
+        ko_size = max(7.2, size * 0.88)
+    else:
+        color = "#000000"
+        ko_size = max(7.2, size * (0.86 if not is_title else 0.92))
+    line_height = max(ko_size * 1.12, (y1 - y0) * 0.98)
+    width = max(120.0, 565.0 - x0)
+    return (
+        f"left:{x0:.3f}pt;top:{y0:.3f}pt;width:{width:.3f}pt;"
+        f"height:{max(line_height, y1 - y0):.3f}pt;font-size:{ko_size:.3f}pt;"
+        f"line-height:{line_height:.3f}pt;font-weight:{weight};font-style:normal;"
+        f"color:{color};"
+    )
+
+
 def style_number(style: str, key: str, default: float = 0.0) -> float:
     match = re.search(rf"{re.escape(key)}\s*:\s*([0-9.]+)pt", style)
     return float(match.group(1)) if match else default
@@ -342,6 +372,75 @@ def extract_existing_text_spans(page: fitz.Page) -> list[dict]:
                         "style": style,
                     }
                 )
+    return spans
+
+
+def original_text_lines(page: fitz.Page) -> list[dict]:
+    raw = page.get_text("rawdict")
+    lines: list[dict] = []
+    for block in raw.get("blocks", []):
+        if block.get("type") != 0:
+            continue
+        for line in block.get("lines", []):
+            text = clean_visible_text(
+                "".join("".join(ch.get("c", "") for ch in span.get("chars", [])) for span in line.get("spans", []))
+            )
+            if not text or text == "CM Strength Dynasty":
+                continue
+            bbox = tuple(float(v) for v in line["bbox"])
+            if bbox[1] < 88 or bbox[1] > 710:
+                continue
+            lines.append(line)
+    return lines
+
+
+def korean_text_lines(page: fitz.Page) -> list[str]:
+    lines: list[str] = []
+    for line in page.get_text().splitlines():
+        text = localize_mixed_text(clean_visible_text(line))
+        if text and text != "CM Strength Dynasty":
+            lines.extend(normalize_korean_workout_line(text))
+    return lines
+
+
+def normalize_korean_workout_line(text: str) -> list[str]:
+    text = localize_mixed_text(text)
+    text = re.sub(r"TOTAL WORK\s*세트", "총 작업량 세트", text, flags=re.I)
+    text = re.sub(r"총\s*작업\s*세트", "총 작업량 세트", text)
+    text = re.sub(r"총작업\s*세트", "총 작업량 세트", text)
+    text = re.sub(r"슈퍼\s*세트", "슈퍼세트", text)
+    markers = ["총 작업량 세트", "RPE:", "목표:", "슈퍼세트"]
+    parts = [text]
+    for marker in markers:
+        new_parts: list[str] = []
+        for part in parts:
+            idx = part.find(marker)
+            if idx > 0:
+                before = part[:idx].strip(" .")
+                after = part[idx:].strip()
+                if before:
+                    new_parts.append(before)
+                if after:
+                    new_parts.append(after)
+            else:
+                new_parts.append(part)
+        parts = new_parts
+    cleaned: list[str] = []
+    for part in parts:
+        part = clean_visible_text(part)
+        if part.upper() == "SUPERSET WITH":
+            part = "슈퍼세트"
+        if part:
+            cleaned.append(part)
+    return cleaned
+
+
+def extract_workout_line_spans(original_page: fitz.Page, korean_page: fitz.Page) -> list[dict]:
+    anchors = original_text_lines(original_page)
+    texts = korean_text_lines(korean_page)
+    spans: list[dict] = []
+    for anchor, text in zip(anchors, texts):
+        spans.append({"text": text, "source": text, "style": line_style_from_original(anchor, text)})
     return spans
 
 
@@ -690,7 +789,10 @@ def main() -> None:
             spans = closing_page_spans(korean_pdf[i])
             used_paragraphs = len(spans)
         elif korean_pdf is not None:
-            spans = extract_existing_text_spans(korean_pdf[i])
+            if number in WORKOUT_PAGES:
+                spans = extract_workout_line_spans(page, korean_pdf[i])
+            else:
+                spans = extract_existing_text_spans(korean_pdf[i])
             used_paragraphs = len(spans)
             if not spans:
                 page_sources = page_aligned_text[i] if i < len(page_aligned_text) and page_aligned_text[i] else visible_paragraphs
